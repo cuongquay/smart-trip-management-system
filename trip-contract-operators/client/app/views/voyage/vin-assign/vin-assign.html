@@ -1,0 +1,95 @@
+<bc-man-sidebar></bc-man-sidebar>
+
+<div class="bc-man-dashboard">
+  <h1>
+    Welcome Bernard!
+  </h1>
+
+  <h5>Voyage ID: {{voyageId}}</h5>
+  <div class="bottom-holder">
+    <div class="card card-secondary card-manufacture">
+      <div class="card-block">
+            <h5 class="card-title">Vehicle Information</h5>
+            <p class="status" ng-class="loading ? 'status-locked' : 'status-normal'">
+                <span class="field">Model Type</span>
+                <span class="data pull-right">{{vehicles[selectedVehicleIndex].vehicleDetails.modelType}}</span>
+            </p>
+            <p class="status" ng-class="loading ? 'status-locked' : 'status-normal'">
+                <span class="field">Manufacture</span>
+                <span class="data pull-right">{{vehicles[selectedVehicleIndex].vehicleDetails.manufacture}}</span>
+            </p>
+            <p class="status" ng-class="loading ? 'status-locked' : 'status-normal'">
+                <span class="field">Surface Color</span>
+                <span class="data pull-right">{{vehicles[selectedVehicleIndex].vehicleDetails.surfaceColour}}</span>
+            </p>
+            <p class="status" ng-class="loading ? 'status-locked' : 'status-normal'">
+                <span class="field">Plate Number</span>
+                <span class="data pull-right">{{vehicles[selectedVehicleIndex].vehicleDetails.plateNumber}}</span>
+            </p>
+            <p class="status" ng-class="loading ? 'status-locked' : 'status-normal'">
+                <span class="field">Max Capacity</span>
+                <span class="data pull-right">{{vehicles[selectedVehicleIndex].maxCapacityPersons}} persons</span>
+            </p>
+            <p class="status" ng-class="loading ? 'status-locked' : 'status-normal'">
+                <span class="field">Included Driver</span>
+                <span class="data pull-right">{{vehicles[selectedVehicleIndex].driver ? 'Yes': 'No'}}</span>
+            </p>
+            <p class="status" ng-class="loading ? 'status-locked' : 'status-normal'">
+                <span class="field">Cost Per Distance</span>
+                <span class="data pull-right">{{vehicles[selectedVehicleIndex].costPerDistanceUnit  | currency : vehicles[selectedVehicleIndex].costUnit : 0}}
+                  /{{vehicles[selectedVehicleIndex].distanceUnit}}
+                </span>
+            </p>
+    </div>
+      <div class="btn-groups" style="padding: 20px 10px">
+        <a href="/operation/{{operation.nextId()}}/{{voyageId}}">
+          <button class="start-manufacture btn btn-primary" ng-click="nextSetup()">{{ operation.name() }}</button>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <div class="bc-man-overview">
+    <h5>
+      Operating Status
+      <a href="/operation/voyages"><button class="btn fade">Voyages</button></a>
+      <a href="/operation/vin-assign/{{voyageId}}"><button class="btn btn-secondary">Vehicle Assign</button></a>
+      <a href="/operation/drv-assign/{{voyageId}}"><button class="btn fade">Driver Assign</button></a>
+    </h5>
+    <div class="graphs" style="color: #5d6173">
+      <div class="block-main row" alt="Vehicle Details">
+        <div class="block-field" ng-repeat="vehicle in vehicles" ng-class="{ 'selected': selectedVehicleIndex == $index}" ng-click="onVehicleSelect($index)">
+          <span class="data-field fa" style="width: 20px;text-align: center;" ng-class="{ 'fa-lock': isEnterpriseOwner(vehicle), 'fa-globe': !isEnterpriseOwner(vehicle) }"></span> | 
+          <i class="fa fa-{{vehicle.vehicleType.toLowerCase()}}" style="width: 20px;text-align: center;"></i> | 
+          <span class="data-field">{{vehicle.vehicleDetails.modelType}}</span> | 
+          <span class="data-field">{{vehicle.vehicleDetails.manufacture}}</span> | 
+          <span class="data-field">{{vehicle.vehicleDetails.plateNumber}}</span>
+          <span class="data-field">({{vehicle.costPerDistanceUnit  | currency : vehicle.costUnit : 0}}
+              /{{vehicle.distanceUnit}})</span>
+          <i class="fa pull-right" ng-class="{ 'fa-check': selectedVehicleIndex == $index}"></i>
+        </div>
+      </div>
+      <div class="time-table row" alt="Owner Details">
+        <span class="date-field btn btn-default"><i class="fa fa-user-o" style="width: 20px;"></i>Nguyen Van A</span>
+        <span class="date-field btn btn-default">Registr: 39248238</span>
+        <span class="date-field btn btn-default">Phone: 0912345678</span>
+      </div>
+      <div class="time-table row" alt="Driver Details" ng-if="vehicles[selectedVehicleIndex].driver">
+        <span class="date-field btn btn-default"><i class="fa fa-id-card" style="width: 20px;"></i>Nguyen Van A</span>
+        <span class="date-field btn btn-default">License: 92173821</span>
+        <span class="date-field btn btn-default">Phone: 0912345678</span>
+      </div>
+      <div class="block-info row pull-left" alt="Service Details">
+        <div style="color: whitesmoke;"><h4>Service Ratings</h4></div>
+        <div style="color: #ffd640;"><h4><i class="fa fa-star" ng-repeat="n in getCountRange(getVehicleMetaInfo().ratings.average)"></i><i class="fa fa-star-o" ng-repeat="n in getCountRange(getVehicleMetaInfo().ratings.average, 5)"></i>
+          <span class="date-field">| {{ getVehicleMetaInfo().ratings.count }}</span></h4></div>
+      </div>
+      <div class="block-info row pull-right" alt="Service Details">
+        <div style="color: whitesmoke;"><h4>Customer Feedbacks</h4></div>
+        <div style="color: #ffd640;"><h4>{{ getVehicleMetaInfo().feedbacks.count }} comments</h4></div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

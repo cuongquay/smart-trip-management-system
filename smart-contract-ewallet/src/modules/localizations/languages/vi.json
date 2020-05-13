@@ -1,0 +1,985 @@
+{
+  "common": {
+    "ok": "OK",
+    "cancel": "Huỷ",
+    "error": "Lỗi",
+    "call": "Gọi",
+    "app_name": "Flash - Trip|Contract",
+    "update": "Cập nhật",
+    "share":
+      "Rất nhiều ưu đãi HOÀN TIỀN lên tới 10% giá trị mua hàng từ Ứng dụng Trip|Contract - Thanh toán thông minh đang chờ đón bạn. Nhanh tay tải ứng dụng tại: https://apps.tripcontract.com/dl để có những trải nghiệm thú vị nhé !",
+    "tos": "Điều khoản sử dụng",
+    "term_condition_title": "Chào mừng bạn đến với Trip|Contract!\n\n",
+    "term_condition":
+      "Các điều khoản sử dụng được áp dụng cho việc sử dụng ứng dụng Trip|Contract và các dịch vụ được cung cấp bởi Trip|Contract. Thông qua việc truy cập, bạn công nhận rằng bạn đã đọc, hiểu và nhất trí với việc tuân thủ các quy định của những điều khoản này.\n\nVui lòng đọc kĩ các điều khoản của chúng tôi tại ",
+    "term_condition_link": "đây"
+  },
+  "message": {
+    "network": {
+      "title": "Thông tin kết nối mạng",
+      "error":
+        "Không có kết nối mạng để thực hiện dịch vụ này. Xin bạn hãy kiểm lại tra kết nối WiFi hoặc 3G/4G trong thiết bị di động."
+    },
+    "logout": {
+      "title": "Thoát khỏi ứng dụng",
+      "confirmation": "Cám ơn bạn đã sử dụng Trip|Contract.",
+      "action": "Đăng xuất"
+    },
+    "notification": {
+      "delete": {
+        "title": "Xóa tin nhắn thông báo",
+        "confirmation":
+          "Bạn có chắc chắn muốn xóa tin nhắn thông báo khỏi ứng dụng không?",
+        "action": "Xóa"
+      }
+    },
+    "support": {
+      "title": "Hỗ trợ khách hàng",
+      "description":
+        "Nhấn Gọi để kết nối với tổng đài viên (1800 6751). Chú ý cuộc gọi của bạn sẽ bị tính cước viễn thông theo quy định.",
+      "action": "Gọi"
+    },
+    "cancel": "Hủy",
+    "accept": "Đóng lại"
+  },
+  "header": {
+    "back": "Quay lại"
+  },
+  "dialogs": {
+    "over_3": {
+      "description":
+        "Tài khoản của bạn đã bị khóa do nhập sai \n mã khóa 3 lần. Vui lòng gọi tổng đài \n để được hỗ trợ.",
+      "call_help": "Gọi 1800 6751",
+      "dismiss": "Bỏ qua"
+    },
+    "update_app": {
+      "title": "Đã có bản cập nhật mới!",
+      "content": "Vui lòng cập nhật ứng dụng\nđể sử dụng những tính năng mới",
+      "buttonText": "Cập nhật",
+      "appstore_id": "id1293678332",
+      "playstore_id": "com.tripcontract.mobile"
+    },
+    "safety_information": {
+      "title": "An toàn thông tin",
+      "content":
+        "Trip|Contract cam kết không tiết lộ bất kỳ thông tin nào của bạn dưới mọi hình thức cho bên thứ 3.",
+      "detail": "Chi tiết xem",
+      "privacy_policy": "Chính sách quyền riêng tư",
+      "close": "Đóng"
+    },
+    "logout": {
+      "are_you_sure": "Bạn có chắc chắn muốn \n đăng xuất tài khoản?",
+      "logout": "Đăng xuất",
+      "ignor": "Bỏ qua"
+    },
+    "refill_methods": {
+      "recharge_into_account": "Nạp tiền vào tài khoản",
+      "close_the_window": "Đóng cửa sổ"
+    },
+    "topup_card": {
+      "code": "Mã thẻ"
+    },
+    "item_card": {
+      "copy": "Sao chép",
+      "seri": "Seri"
+    }
+  },
+  "errors": {
+    "CurrentPasscodeInvalidException": {
+      "title": "Mã khóa hiện tại không chính xác",
+      "message": "Vui lòng nhập lại."
+    },
+    "NewPasscodeSameOldPasswordException": {
+      "title": "Mã khóa mới không được trùng với mã khóa hiện tại",
+      "message": "Vui lòng kiểm tra lại."
+    },
+    "MultipleLoginException": {
+      "title": "Lỗi đăng nhập trên nhiều thiết bị",
+      "message":
+        "Tài khoản không được phép đăng nhập trên thiết bị này. Vui lòng nhập số khác hoặc liên hệ hotline để được hỗ trợ"
+    },
+    "IncorrectFormatPhoneNumberException": {
+      "title": "Số điện thoại không đúng định dạng",
+      "message": "Vui lòng kiểm tra lại"
+    },
+    "LoginVerifyIncorrectCodeException": {
+      "title": "Bạn nhập sai mã khóa {{retryLeft}} lần",
+      "message": "Vui lòng nhập lại mã khóa"
+    },
+    "LoginVerifyIncorrectCodeExceptionPasscode": {
+      "title": "Mã xác nhận không chính xác, còn {{retryLeft}} lần thử",
+      "message": "Vui lòng kiểm tra lại"
+    },
+    "LoginVerifyIncorrectCodeExceptionOTP": {
+      "title": "Mã xác nhận không chính xác, còn {{retryLeft}} lần thử",
+      "message": "Vui lòng kiểm tra lại"
+    },
+    "PasscodeResetAddressNotFoundException": {
+      "title": "Lỗi địa chỉ xác minh",
+      "message": "Thông tin khôi phục tài khoản không tồn tại"
+    },
+    "LoginRequestFailedException": {
+      "title": "Gửi yêu cầu thất bại",
+      "message": "Xin vui lòng thử lại"
+    },
+    "LoginVerifyExpiredException": {
+      "title": "Yêu cầu đăng nhập đã hết hạn",
+      "message": "Xin vui lòng thử lại"
+    },
+    "PasscodeExistedException": {
+      "title": "Mã khoá đã tồn tại",
+      "message": "Vui lòng kiểm tra lại"
+    },
+    "PasscodeDuplicatedException": {
+      "title": "SĐT dự phòng không trùng với số điện thoại chính",
+      "message": "Vui lòng kiểm tra lại"
+    },
+    "PasscodeResetNotVerifiedException": {
+      "title": "Yêu cầu đặt lại mã khoá chưa được xác thực",
+      "message": "Vui lòng kiểm tra lại"
+    },
+    "PasscodeResetRequestNotFoundException": {
+      "title": "Yêu cầu gửi mã không tồn tại",
+      "message": "Vui lòng thực hiện lại thao tác yêu cầu gửi mã xác nhận"
+    },
+    "VerifyExpiredException": {
+      "title": "Mã xác nhận hết hạn",
+      "message": "Vui lòng thực hiện lại thao tác yêu cầu gửi mã xác nhận"
+    },
+    "NotActiveException": {
+      "title": "Tài khoản của quý khách đang bị khoá",
+      "message": "Vui lòng gọi CSKH để được hỗ trợ"
+    },
+    "LoginVerifyOverTimeIncorrectCodeException": {
+      "title": "Tài khoản đã bị khóa",
+      "message": "Bạn nhập sai 3 lần mã PIN. Tài khoản của bạn đang tạm khóa."
+    },
+    "MerchantNotActiveException": {
+      "title": "Cửa hàng này tạm thời không hoạt động",
+      "message": "Vui lòng giao dịch tại cửa hàng khác"
+    },
+    "NotFoundHttpException": {
+      "title": "Không tìm thấy đại lý tương ứng",
+      "message": "Vui lòng nhập số điện thoại đại lý khác"
+    },
+    "NotValidPhoneNumberException": {
+      "title": "Không hỗ trợ SĐT đại lý",
+      "message": "Vui lòng kiểm tra lại"
+    },
+    "RedeemNeedPurchaseFirstException": {
+      "title": "Giao dịch không hợp lệ",
+      "message": "Hãy mua phiếu để tiếp tục và sử dụng tiền thưởng"
+    },
+    "InputCodesDoNotMatch": {
+      "title": "Mã khóa xác nhận chưa khớp",
+      "message": "Vui lòng kiểm tra lại"
+    },
+    "AmountInvalid": {
+      "title": "Số tiền không hợp lệ",
+      "message": "Số tiền thanh toán cần lớn hơn 1.000 đ."
+    },
+    "PINEmpty": {
+      "title": "Mã PIN không được bỏ trống",
+      "message": "Vui lòng kiểm tra lại."
+    },
+    "PasscodeEmpty": {
+      "title": "Mã khóa không được bỏ trống",
+      "message": "Vui lòng kiểm tra lại."
+    },
+    "ConfirmationCodeEmpty": {
+      "title": "Mã xác nhận không được bỏ trống",
+      "message": "Vui lòng kiểm tra lại."
+    },
+    "AmountNotSelected": {
+      "title": "Lỗi",
+      "message": "Mệnh giá không được bỏ trống"
+    },
+    "PaymentMethodNotSelected": {
+      "title": "Lỗi",
+      "message": "Phương thức thanh toán không được bỏ trống"
+    },
+    "InvalidResetAddress": {
+      "title": "Địa chỉ xác nhận không hợp lệ",
+      "message": "Vui lòng kiểm tra lại"
+    },
+    "UnexpectedError": {
+      "title": "Có lỗi xảy ra",
+      "message": "Vui lòng thử lại sau ít phút"
+    },
+    "PhoneNotEntered": {
+      "title": "Số điện thoại trống",
+      "message": "Vui lòng kiểm tra lại."
+    },
+    "BackupAddressNotEntered": {
+      "title": "Địa chỉ xác nhận trống",
+      "message": "Vui lòng kiểm tra lại."
+    },
+    "PhoneInvalid": {
+      "title": "SĐT không chính xác",
+      "message": "Vui lòng kiểm tra lại."
+    },
+    "PromotionAccumulatedGoodsException": {
+      "title": "Chương trình khuyến mại không hợp lệ",
+      "message": "Vui lòng chọn chương trình khác"
+    },
+    "PromotionAccumulatedCouponException": {
+      "title": "Chương trình khuyến mại không hợp lệ",
+      "message": "Vui lòng chọn chương trình khác"
+    },
+    "PromotionCouponValueException": {
+      "title": "Chương trình khuyến mại không hợp lệ",
+      "message": "Vui lòng chọn chương trình khác"
+    },
+    "PromotionDateException": {
+      "title": "Mã khuyến mại ngoài hiệu lực sử dụng",
+      "message": "Vui lòng kiểm tra lại"
+    },
+    "PromotionFirstCouponException": {
+      "title": "Mã khuyến mại không hợp lệ",
+      "message": "Vui lòng kiểm tra lại"
+    },
+    "PromotionFirstPurchaseException": {
+      "title": "Mã khuyến mại không hợp lệ",
+      "message": "Vui lòng kiểm tra lại"
+    },
+    "PromotionFirstTransactionException": {
+      "title": "Mã khuyến mại không hợp lệ",
+      "message": "Vui lòng kiểm tra lại"
+    },
+    "PromotionGoodsValueException": {
+      "title": "Mã khuyến mại không áp dụng cho GD này",
+      "message": "Vui lòng kiểm tra lại"
+    },
+    "PromotionQtyAccumulatedCouponException": {
+      "title": "Mã khuyến mại không hợp lệ",
+      "message": "Vui lòng kiểm tra lại"
+    },
+    "PromotionQtyAccumulatedGoodsException": {
+      "title": "Mã khuyến mại không hợp lệ",
+      "message": "Vui lòng kiểm tra lại"
+    },
+    "PromotionQtyMerchantBuyCouponException": {
+      "title": "Mã khuyến mại không hợp lệ",
+      "message": "Vui lòng kiểm tra lại"
+    },
+    "PromotionQtyMerchantBuyGoodsException": {
+      "title": "Mã khuyến mại không hợp lệ",
+      "message": "Vui lòng kiểm tra lại"
+    },
+    "PromotionQtyReferralException": {
+      "title": "Mã khuyến mại không hợp lệ",
+      "message": "Vui lòng kiểm tra lại"
+    },
+    "PromotionRestrictAreaException": {
+      "title": "Mã khuyến mại không hợp lệ",
+      "message": "Vui lòng kiểm tra lại"
+    },
+    "PromotionRestrictBusinessTypeException": {
+      "title": "Mã khuyến mại không hợp lệ",
+      "message": "Vui lòng kiểm tra lại"
+    },
+    "PromotionRestrictCustomerException": {
+      "title": "Mã khuyến mại không hợp lệ",
+      "message": "Vui lòng kiểm tra lại"
+    },
+    "PromotionRestrictMerchantException": {
+      "title": "Mã khuyến mại không áp dụng cho GD này",
+      "message": "Vui lòng kiểm tra lại"
+    },
+    "PromotionRestrictRewardDailyException": {
+      "title": "Mã khuyến mại hết hiệu lực trong ngày",
+      "message": "Vui lòng thử lại vào ngày mai"
+    },
+    "PromotionTransactionSubtypeException": {
+      "title": "Mã khuyến mại không áp dụng cho GD này",
+      "message": "Vui lòng kiểm tra lại"
+    },
+    "PromotionTransactionTypeException": {
+      "title": "Mã khuyến mại không áp dụng cho GD này",
+      "message": "Vui lòng kiểm tra lại"
+    },
+    "PromotionUseException": {
+      "title": "Mã khuyến mại hết hiệu lực sử dụng",
+      "message": "Vui lòng kiểm tra lại"
+    },
+    "PromotionInvalid": {
+      "title": "Mã khuyến mại không hợp lệ",
+      "message": "Vui lòng kiểm tra lại."
+    },
+    "InvalidPromotionException": {
+      "title": "Chương trình khuyến mại không hợp lệ",
+      "message": "Vui lòng chọn chương trình khác"
+    },
+    "TokenExpiredException": {
+      "title": "Phiên đăng nhập hết hạn",
+      "message": "Vui lòng đăng nhập lại!"
+    },
+    "MerchantNotFoundException": {
+      "title": "Mã QR không hợp lệ",
+      "message": "Vui lòng liên hệ hotline để được hỗ trợ"
+    },
+    "MerchantCodeNotFoundException": {
+      "title": "Mã đại lý không tồn tại.",
+      "message": "Vui lòng kiểm tra lại."
+    },
+    "MerchantNotFound": {
+      "title": "Không tìm thấy đại lý",
+      "message":
+        "Không tìm thấy đại lý với mã code tương ứng. Vui lòng thử lại."
+    },
+    "MerchantNotActive": {
+      "title": "Đại lý không hoạt động",
+      "message": "Vui lòng dùng mã đại lý khác."
+    },
+    "RedeemTooFastAndFuriousException": {
+      "title": "Giao dịch không hợp lệ",
+      "message": "Vui long thực hiện sau ít phút."
+    },
+    "PromotionNotFoundException": {
+      "title": "Mã khuyến mại không tồn tại.",
+      "message": "Vui lòng kiểm tra lại."
+    },
+    "NoInternetConnection": {
+      "title": "Mất kết nối mạng",
+      "message": "Vui lòng thử lại."
+    },
+    "PromoCodeInvalid": {
+      "title": "Mã khuyến mại không tồn tại",
+      "message": "Vui lòng kiểm tra lại."
+    },
+    "InitTransactionFailedException": {
+      "title": "Có lỗi xảy ra",
+      "message": "Vui lòng thử lại"
+    },
+    "PromotionCodeNotFound": {
+      "title": "Mã khuyến mại không tồn tại.",
+      "message": "Vui lòng kiểm tra lại"
+    },
+    "AmountInvalidException": {
+      "title": "Mệnh giá không hợp lệ.",
+      "message": "Vui lòng kiểm tra lại"
+    },
+    "ProviderInvalidException": {
+      "title": "Nhà mạng không hợp lệ.",
+      "message": "Vui lòng kiểm tra lại"
+    },
+    "QuantityInvalidException": {
+      "title": "Số lượng mã thẻ không hợp lệ.",
+      "message": "Vui lòng kiểm tra lại"
+    },
+    "ServiceMaintenance": {
+      "title": "Nhà mạng đang được bảo trì.",
+      "message": "Vui lòng quay lại sau"
+    },
+    "TypeInvalidException": {
+      "title": "Loại thuê bao không hợp lệ.",
+      "message": "Vui lòng kiểm tra lại"
+    },
+    "PhoneNumberInvalidException": {
+      "title": "Số điện thoại không hợp lệ.",
+      "message": "Vui lòng kiểm tra lại"
+    },
+    "OutsBalanceNotEnoughException": {
+      "title": "Số dư không đủ để thực hiện giao dịch.",
+      "message": "Vui lòng kiểm tra lại"
+    },
+    "ValidationException": {
+      "title": "Dữ liệu không hợp lệ",
+      "message": "Vui lòng kiểm tra lại"
+    },
+    "LoginVerifyFailedException": {
+      "title": "Xác thực thất bại",
+      "message": "Vui lòng thử lại"
+    },
+    "TokenNotProvidedException": {
+      "title": "Bạn đã đăng xuất",
+      "message": "Vui lòng đăng nhập để tiếp tục"
+    },
+    "UpdateProfileFailException": {
+      "title": "Cập nhật thông tin thất bại",
+      "message": "Vui lòng thử lại sau"
+    },
+    "InvalidProfileNameException": {
+      "title": "Tên không đúng định dạng",
+      "message": "Vui lòng thử lại"
+    },
+    "MinimumIdentityCardException": {
+      "title": "CMND chưa đúng định dạng",
+      "message": "Vui lòng thử lại"
+    },
+    "EmptyIdentityCardException": {
+      "title": "CMND không được bỏ trống",
+      "message": "Vui lòng thử lại"
+    },
+    "InvalidResetEmail": {
+      "title": "Email không hợp lệ",
+      "message": "Vui lòng thử lại"
+    },
+    "InvalidResetPhone": {
+      "title": "SĐT không hợp lệ",
+      "message": "Vui lòng thử lại"
+    },
+    "EmptyResetEmail": {
+      "title": "Email không được bỏ trống",
+      "message": "Vui lòng thử lại"
+    },
+    "EmptyResetPhone": {
+      "title": "SĐT không được bỏ trống",
+      "message": "Vui lòng thử lại"
+    },
+    "EmptyProfileNameException": {
+      "title": "Tên không được bỏ trống",
+      "message": "Vui lòng thử lại"
+    },
+    "MinimumProfileNameException": {
+      "title": "Tên chứa ít nhất 2 ký tự chữ",
+      "message": "Vui lòng thử lại"
+    },
+    "SpecialCharactersNotSupported": {
+      "title": "Không chứa ký tự đặc biệt",
+      "message": "Vui lòng thử lại"
+    },
+    "NumberOnlyNotSupported": {
+      "title": "Tên chứa ít nhất 2 ký tự chữ",
+      "message": "Vui lòng thử lại"
+    },
+    "WordNotSupported": {
+      "title": "CMND không chứa ký tự chữ",
+      "message": "Vui lòng thử lại"
+    },
+    "RequireSoftwareUpdateException": {
+      "title": "Ứng dụng quá cũ",
+      "message": "Vui lòng cập nhật"
+    },
+    "ErrorAgeException": {
+      "title": "Năm sinh không phù hợp",
+      "message": "Vui lòng cập nhật"
+    },
+    "PaymentStateNotFoundException": {
+      "title": "Có lỗi xảy ra với đơn hàng của bạn",
+      "message": "Vui lòng thử lại hoặc liên hệ hotline để được hỗ trợ"
+    },
+    "PaymentProcessDeniedException": {
+      "title": "Bạn không có quyền thực hiện đơn hàng này",
+      "message": "Vui lòng thử lại"
+    },
+    "OrderCreateFailedException": {
+      "title": "Có lỗi xảy ra",
+      "message": "Vui lòng thử lại"
+    },
+    "AmountTooLowException": {
+      "title": "Mệnh giá phải lớn hơn 1000 đ",
+      "message": "Vui lòng kiểm tra lại"
+    },
+    "PaymentProcessFailedException": {
+      "title": "Có lỗi xảy ra",
+      "message": "Vui lòng thử lại"
+    },
+    "CouldNotTransferToYourselfException": {
+      "title": "Số điện thoại không hợp lệ",
+      "message": "Vui lòng nhập số khác"
+    },
+    "CustomerNotFoundException": {
+      "title": "Số điện thoại chưa đăng ký tài khoản",
+      "message": "Vui lòng nhập số khác"
+    },
+    "CustomerNotActiveException": {
+      "title": "Tài khoản của người nhận hiện đang bị khóa",
+      "message": "Vui lòng nhập số khác"
+    },
+    "ProcessFailedException": {
+      "title": "Có lỗi xảy ra",
+      "message": "Vui lòng kiểm tra và thử lại"
+    },
+    "AccountNotActivatedException": {
+      "title": "Tài khoản chưa được kích hoạt",
+      "message": "Vui lòng kiểm tra và thử lại"
+    },
+    "InvalidParamUserSettingException": {
+      "title": "Có lỗi xảy ra",
+      "message": "Vui lòng thử lại"
+    },
+    "InvalidOrderBilledAmountException": {
+      "title": "Số tiền không hợp lệ",
+      "message": "Vui lòng nhập số tiền tối thiểu 1000đ"
+    },
+    "OrderAlreadyFinishException": {
+      "title": "Có lỗi xảy ra với đơn hàng của bạn",
+      "message": "Vui lòng thử lại hoặc liên hệ hotline để được hỗ trợ"
+    },
+    "TransferPhoneEmptyException": {
+      "title": "Số điện thoại không được bỏ trống",
+      "message": "Vui lòng kiểm tra lại"
+    },
+    "CreatedException": {
+      "title": "Số điện thoại không được bỏ trống",
+      "message": "Vui lòng kiểm tra lại"
+    },
+    "QrCodeNotFoundException": {
+      "title": "Mã không đúng định dạng",
+      "message": "Vui lòng kiểm tra lại"
+    },
+    "GetAccountsFailException": {
+      "title": "Có lỗi xảy ra",
+      "message": "Vui lòng thử lại"
+    },
+    "OrderNotFoundException": {
+      "title": "Có lỗi xảy ra",
+      "message": "Vui lòng thử lại"
+    },
+    "InvalidOrderCancelStatusException": {
+      "title": "Yêu cầu hủy đơn hàng không hợp lệ",
+      "message":
+        "Vui lòng tiếp tục giao dịch hoặc liên hệ hotline để được hỗ trợ"
+    },
+    "OrderUpdateFailedException": {
+      "title": "Có lỗi xảy ra",
+      "message": "Vui lòng thử lại"
+    },
+    "PayloadInvalidException": {
+      "title": "Có lỗi xảy ra với đơn hàng của bạn",
+      "message": "Vui lòng thử lại hoặc liên hệ hotline để được hỗ trợ"
+    },
+    "PaymentAccountInvalidException": {
+      "title": "Có lỗi xảy ra với đơn hàng của bạn",
+      "message": "Vui lòng thử lại hoặc liên hệ hotline để được hỗ trợ"
+    },
+    "InvalidOrderSetbackStatusException": {
+      "title": "Có lỗi xảy ra với đơn hàng của bạn",
+      "message": "Vui lòng thử lại hoặc liên hệ hotline để được hỗ trợ"
+    },
+    "InvalidSetbackStateException": {
+      "title": "Có lỗi xảy ra với đơn hàng của bạn",
+      "message": "Vui lòng thử lại hoặc liên hệ hotline để được hỗ trợ"
+    },
+    "UserProfileNotFoundException": {
+      "title": "Có lỗi xảy ra",
+      "message": "Vui lòng thử lại"
+    },
+    "ActivityInvalidException": {
+      "title": "Có lỗi xảy ra",
+      "message": "Vui lòng thử lại"
+    },
+    "SystemUnexpectedException": {
+      "title": "Có lỗi xảy ra",
+      "message": "Vui lòng thử lại"
+    }
+  },
+  "buy_code": {
+    "title": "Nạp tiền điện thoại",
+    "prepaid": "Thẻ trả trước",
+    "postpaid": "Thẻ trả sau"
+  },
+  "tabs": {
+    "tab1": "Trang chủ",
+    "tab2": "Trả nhanh",
+    "tab3": "Lịch sử"
+  },
+  "auth": {
+    "label_start": "Nhập số điện thoại của bạn",
+    "continue": "Tiếp tục",
+    "tos": "Điều khoản sử dụng"
+  },
+  "auth_backtrack": {
+    "start": "Bắt đầu",
+    "greeting": "Xin chào {{name}}, \n chào mừng bạn quay lại",
+    "another_number": "Nhập số khác"
+  },
+  "confirmation": {
+    "hello": "Nhập mã khoá",
+    "hello2": "Nhập mã xác nhận",
+    "otp_confirm_title": "Vui lòng nhập mã xác nhận đã được \n gửi tới số ",
+    "passcode_confirm_title":
+      "Xin chào {{phone}} \n Vui lòng nhập mã khoá để đăng nhập",
+    "passcode_confirm_title_p1": "Xin chào ",
+    "passcode_confirm_title_p2": " \n Vui lòng nhập mã khoá để đăng nhập",
+    "auto_refresh_after": "Tự động cập nhật sau {{counter}} giây",
+    "code_receive_after": "Bạn sẽ nhận được mã trong {{counter}} giây",
+    "no_code_received": "Không nhận được mã?",
+    "enter_another_number": "Nhập số khác",
+    "forgot_passcode": "Quên mã khoá?",
+    "requested_code_again": "Nhận lại mã"
+  },
+  "account_locked": {
+    "info1":
+      "Tài khoản của bạn đã bị tạm khóa do nhập sai mã khóa {{count}} lần",
+    "info2":
+      "Tài khoản của bạn đã bị tạm khóa do nhập sai mã xác nhận {{count}} lần"
+  },
+  "passcode_lock": {
+    "passcode_input_reminder":
+      "Vui lòng nhập mã khoá để bảo vệ \n tài khoản của bạn",
+    "passcode_reinput": "Nhập lại mã khoá để xác nhận \n",
+    "enter_phone_email_backup":
+      "Nhập số điện thoại dự phòng hoặc email \n để xác minh tài khoản trong trường hợp \n bạn quên mã khóa",
+    "wrong_verification_code": {
+      "title": "Nhập sai mã xác nhận, còn {{count}} lần thử",
+      "message": "Vui lòng kiểm tra lại mã xác nhận"
+    },
+    "wrong_verification_code_exceeded": {
+      "title": "Nhập sai mã xác nhận 3 lần",
+      "message": "Vui lòng thực hiện lại thao tác"
+    }
+  },
+  "passcode_code": {
+    "title": "Tạo mã khoá đăng nhập",
+    "title_repeat": "Xác nhận mã khóa"
+  },
+  "passcode_recovery": {
+    "enter_phone_email_backup":
+      "Nhập số điện thoại dự phòng hoặc \n email để xác minh khi quên mã khóa",
+    "enter_phone_backup": "Nhập số điện thoại dự phòng để \n nhận mã xác minh",
+    "enter_email_backup": "Nhập email dự phòng để \n nhận mã xác minh",
+    "code_confirm_title": "Nhập mã xác nhận đã gửi tới",
+    "use_backup_email": "Sử dụng email dự phòng",
+    "use_backup_phone": "Sử dụng số điện thoại dự phòng",
+    "backup_phone": "Số điện thoại dự phòng",
+    "backup_email": "Email dự phòng"
+  },
+  "home": {
+    "search": {
+      "title": "Tìm kiếm"
+    },
+    "top_features": {
+      "item1": "Nạp tiền",
+      "item2": "Điểm giao dịch",
+      "item3": "Nhận tiền"
+    },
+    "bottom_features": {
+      "item1": "Chuyển tiền \n qua ví",
+      "item2": "Đầu tư \n tài chính",
+      "item3": "Thanh toán \n hóa đơn"
+    },
+    "qr_scan": {
+      "touch_qr": "Trượt để mở chế độ quét"
+    },
+    "qr_purchase": {
+      "title": "MÃ THANH TOÁN GIAO DỊCH"
+    },
+    "insight_news": {
+      "title": "Thông tin khuyến mãi từ Trip|Contract",
+      "description":
+        "Không có kết nối mạng internet.\nXin bạn vui lòng kiểm tra lại kết nối WiFi hoặc 3G.",
+      "start_date": "Từ ",
+      "end_date": " đến "
+    }
+  },
+  "modal": {
+    "using": "Đang sử dụng",
+    "use": "Sử dụng",
+    "cancel_promotion": "Bỏ chọn",
+    "choose_the_amount": "Chọn số tiền nạp",
+    "enter_confirm_code": "Nhập mã xác nhận",
+    "billed_amount": "Số tiền",
+    "discount_amount": "Được giảm",
+    "total_amount": "Số tiền thanh toán",
+    "total_money": "Tổng tiền",
+    "recipients": "Chuyển đến",
+    "phone": "Số điện thoại",
+    "amount": "Số tiền",
+    "transaction_success": "Giao dịch thành công",
+    "transaction_success_transfer_money": "Chuyển tiền thành công",
+    "transaction_failed": "Giao dịch không thành công",
+    "transaction_failed_error":
+      "Có lỗi xảy ra trong quá trình kết nối \ntới nhà cung cấp.\nVui lòng thực hiện lại giao dịch",
+    "transaction_failed_content":
+      "Bạn đã hủy giao dịch này.\nSố tiền trong tài khoản của bạn\n được bảo toàn",
+    "transaction_pending": "Giao dịch đang chờ chuyển",
+    "transaction_pending_processing":
+      "Giao dịch đang được chuyển đổi.\n Vui lòng chờ giao dịch hoàn thành",
+    "transaction_pending_content":
+      "Tài khoản nhận chưa có trên hệ thống.\nVui lòng thông báo cho người nhận\nđăng ký tài khoản để nhận tiền.",
+    "change": "Thay đổi",
+    "cancel": "Bỏ chọn",
+    "select_promotion_code": "Chọn mã khuyến mại",
+    "detail": "Chi tiết",
+    "use_code": "Sử dụng mã",
+    "enter_agency_code": "Nhập mã đại lý",
+    "enter_amount": "Nhập số tiền",
+    "ononpay_wallet": "Ví Trip|Contract",
+    "select_supllier": "Chọn nhà cung cấp dịch vụ",
+    "select_bill_type": "Chọn loại hóa đơn",
+    "receive_money_instruction_content":
+      "Đưa mã nhận tiền của bạn cho người chuyển tiền để người đó sử dụng tính năng quét mã QR để quét và chuyển tiền cho bạn một cách nhanh chóng và dễ dàng.",
+    "my_code": "MÃ NHẬN TIỀN CỦA BẠN",
+    "guide": "Hướng dẫn sử dụng",
+    "recharge_ononpay": "Đơn hàng Nạp tiền vào tài khoản Trip|Contract",
+    "card_number": "SỐ THẺ",
+    "full_name": "HỌ VÀ TÊN CHỦ THẺ",
+    "expired_date": "NGÀY HẾT HẠN",
+    "cancel_transaction": "Bạn có chắc chắn muốn\nhủy giao dịch này?",
+    "cancel_button_text": "Hủy giao dịch",
+    "go_back": "Quay lại",
+    "continue": "Tiếp tục"
+  },
+  "history": {
+    "title": "Lịch sử giao dịch",
+    "money_in": "Tiền vào",
+    "money_out": "Tiền ra",
+    "money_all": "Tất cả",
+    "keys": {
+      "status": "Trạng thái",
+      "phone_number": "Số điện thoại",
+      "code": "Mã thẻ",
+      "serial": "Seri",
+      "amount": "Mệnh giá",
+      "promotion_amount": "Số tiền khuyến mại",
+      "promotion_name": "Tên chương trình",
+      "promotion_type": "Loại khuyến mại",
+      "merchant": "Nơi giao dịch",
+      "payment_method": "Hình thức",
+      "created_at": "Thời gian giao dịch",
+      "description": "Mô tả",
+      "cards": "Giao dịch mua thẻ",
+      "payment": "THANH TOÁN"
+    }
+  },
+  "drawer": {
+    "user_info": "Thông tin cá nhân",
+    "transaction_history": "Lịch sử giao dịch",
+    "money_management": "Quản lý nguồn tiền",
+    "settings": "Thiết lập ứng dụng",
+    "support": "Hỗ trợ khách hàng",
+    "logout": "Đăng xuất",
+    "version": "Phiên bản",
+    "logout_confirmation": "Bạn có muốn đăng xuất khỏi ứng dụng?"
+  },
+  "payment": {
+    "prepaid": "Số trả trước",
+    "postpaid": "Số trả sau",
+    "recharge_order": "NẠP TIỀN VÀO VÍ",
+    "purchase_order": "THANH TOÁN TẠI ĐẠI LÝ",
+    "money_transfer": "CHUYỂN TIỀN",
+    "select_promotion": "CHỌN KHUYẾN MẠI",
+    "transaction_confirmation": "XÁC NHẬN GIAO DỊCH",
+    "transfer_confirmation": "XÁC NHẬN CHUYỂN TIỀN",
+    "select_account": "CHỌN NGUỒN TIỀN",
+    "ignore": "Bỏ qua",
+    "topup_phone": {
+      "phone_input_title": "Nhập số điện thoại",
+      "select_amount_title": "Chọn mệnh giá",
+      "button_next": "Tiếp tục",
+      "select_qr_title": "Quét mã nhận tiền của người nhận"
+    },
+    "payment_review": {
+      "step_confirm": {
+        "billed_amount": "Số tiền nạp",
+        "transfer_amount": "Số tiền chuyển",
+        "discount_amount": "Được giảm",
+        "total_amount": "Số tiền thanh toán",
+        "continue": "Tiếp tục",
+        "pay_with": "Thanh toán với",
+        "select": "Chọn mã khuyến mại",
+        "accept": "Xác nhận",
+        "close": "Đóng",
+        "warning_title": "Cảnh báo",
+        "warning_content":
+          "Tài khoản người nhận tiền đã lâu không hoạt động.\nĐể chắc chắn tài khoản này sẽ nhận được tiền, vui lòng thông báo người nhận đăng nhập lại tại ứng dụng Trip|Contract."
+      },
+      "card1": {
+        "phone": "Số điện thoại",
+        "operator": "Nhà mạng",
+        "mobile_service": "Loại hình",
+        "amount": "Mệnh giá"
+      },
+      "card2_title": "Phương thức thanh toán",
+      "card2": {
+        "payment_method": "Số dư hiện tại"
+      },
+      "promotion_input_placeholder": "Nhập mã khuyến mại (nếu có)",
+      "button_payment": "Thanh toán"
+    },
+    "payment_result": {
+      "title_topup": "Giao dịch đã được ghi nhận",
+      "title_success": "Giao dịch thành công!",
+      "title_success_transaction": "Thanh toán thành công",
+      "title_fail": "Giao dịch không thành công\n\n Vui lòng thử lại.",
+      "button_transaction_history": "Lịch sử giao dịch",
+      "button_balance": "Tiếp tục nạp vào ví",
+      "button_try_again": "Thử lại",
+      "button_card": "Xem mã thẻ",
+      "button_home": "Về trang chủ"
+    },
+    "phone_card": {
+      "title": "Mua thẻ điện thoại",
+      "operator_title": "Chọn nhà mạng",
+      "amount_title": "Chọn mệnh giá",
+      "button_next": "Tiếp tục"
+    },
+    "reload_balance": {
+      "title": "Nạp trên ứng dụng",
+      "amount_title": "Chọn mệnh giá",
+      "select_bank": "Chọn ngân hàng thanh toán",
+      "payment_method_title": "Chọn phương thức thanh toán",
+      "domestic_payment": "Thẻ nội địa",
+      "international_payment": "Visa/Master",
+      "promotion_placeholder": "Nhập mã khuyến mại (nếu có)",
+      "payment_button": "Thanh toán"
+    },
+    "store_payment": {
+      "title": "Thanh toán"
+    },
+    "wallet_transfer": {
+      "transfer_content": "Tin nhắn (không bắt buộc)",
+      "transfer_amount_title": "Số tiền chuyển",
+      "button_next": "Tiếp tục"
+    }
+  },
+  "qr_scanning": {
+    "back": "Quay lại",
+    "turn_on_flash": "Bật flash",
+    "turn_off_flash": "Tắt flash",
+    "enter_phone": "Nhập thông tin của Đại lý",
+    "dialog_camera_request": {
+      "title": "Trip|Contract",
+      "message": "Vui lòng bật Camera để thực hiện thanh toán"
+    },
+    "error": "Mã quét không hợp lệ",
+    "title": "Hướng Camera vào mã QR"
+  },
+  "map": {
+    "title": "ĐIỂM GIAO DỊCH",
+    "current_location": "Vị trí hiện tại của bạn",
+    "nearest_merchant": "ĐIỂM GIAO DỊCH GẦN BẠN NHẤT",
+    "direction": "Chỉ đường",
+    "recharge_point": "Điểm thanh toán",
+    "location_error_title": "Chưa bật định vị",
+    "location_error_content": "Vui lòng bật chức năng định vị",
+    "pay_point": "Điểm nạp",
+    "location_dialog_title": "Trip|Contract",
+    "location_dialog_content": "Bạn có muốn bật định vị không?",
+    "ok": "Có",
+    "cancel": "Không",
+    "distance_list": "Chọn phạm vi cửa hàng"
+  },
+  "map_direction": {
+    "title": "Chỉ đường đến cửa hàng"
+  },
+  "merchant_list": {
+    "title_recharge_point": "ĐIỂM NẠP TIỀN",
+    "title_pay_point": "ĐIỂM THANH TOÁN",
+    "total_merchants": "Có {{total}} cửa hàng"
+  },
+  "merchant_transaction": {
+    "title": "Thanh toán",
+    "amount_form_headline": "Bạn đang thực hiện thanh toán tại",
+    "amount_form_amount_title": "Giá trị đơn hàng (VND)",
+    "amount_form_promo": "Mã khuyến mại (nếu có)",
+    "amount_form_amountpromotion": "Giá trị thanh toán (VND)",
+    "enter_phone_title": "Nhập số điện thoại hoặc mã của đại lý"
+  },
+  "notification": {
+    "title": "Thông báo",
+    "refresh": "Tải lại",
+    "read": "Đã đọc",
+    "details": "Chi tiết thông báo",
+    "empty": "Không có thông báo mới"
+  },
+  "profile": {
+    "header_title": "Thông tin cá nhân",
+    "fullname_title": "Tên hiển thị",
+    "fullname": "Họ và tên",
+    "primary_phone": "Số điện thoại",
+    "birthday": "Ngày sinh",
+    "account_authentication": "Tài khoản xác thực",
+    "account_unauthentication": "Tài khoản chưa xác thực",
+    "not_update": "Chưa cập nhật",
+    "people_id": "Số CMND",
+    "take_photo_id_card": "Chụp ảnh chứng minh thư",
+    "addition_customer_presonal_info": "Thông tin của quý khách được",
+    "addition_is_protected": "đảm bảo an toàn",
+    "select_photo": "Chọn ảnh",
+    "take_photo": "Chụp ảnh",
+    "select_photo_from_library": "Chọn ảnh từ thư viện"
+  },
+  "edit_profile": {
+    "title": "Chỉnh sửa hồ sơ",
+    "age_restriction":
+      "Bạn chưa đủ độ tuổi cho phép để sử dụng ví điện tử Trip|Contract."
+  },
+  "transaction": {
+    "transaction_detail": "Chi tiết giao dịch",
+    "time": "Thời gian",
+    "date": "Ngày",
+    "order_id": "Mã đơn hàng",
+    "customer_code": "Mã khách hàng",
+    "product_name": "Tên sản phẩm",
+    "billed_amount": "Số tiền",
+    "payment_period": "Kỳ thanh toán",
+    "discount_amount": "Được giảm",
+    "total_amount": "Tổng tiền thanh toán",
+    "pay_with": "Thanh toán với",
+    "pay_at": "Thanh toán tại",
+    "status": "Trạng thái",
+    "destination_user": "Chuyển tới",
+    "transfers_content": "Nội dung chuyển tiền",
+    "money_recived": "Số tiền nhận",
+    "source_user": "Chuyển từ"
+  },
+  "money_management": {
+    "title": "Quản lý nguồn tiền",
+    "use": "Sử dụng",
+    "using": "Đang sử dụng",
+    "add_new_money_resource": "Thêm nguồn tiền",
+    "choose_bank": "Chọn ngân hàng",
+    "number_card": "Số thẻ",
+    "name_user": "Họ tên chủ thẻ (không dấu)",
+    "cmnd": "Số CMND chủ thẻ",
+    "ononpay_description":
+      "Trip|Contract áp dụng các công nghệ bảo mật tiên tiến nhất để đảm bảo an toàn cho tài khoản của bạn. Trip|Contract cam kết không lưu trữ thông tin thẻ dưới mọi hình thức."
+  },
+  "setting": {
+    "title": "Thiết lập ứng dụng",
+    "payment_limit": "Hạn mức thanh toán",
+    "unlimited": "Không giới hạn",
+    "not_accuracy_OTP":
+      "Bạn không cần xác thực OTP khi thanh toán số tiền dưới hạn mức.",
+    "fingerprint_authentication": "Xác thực vân tay",
+    "note":
+      "Lưu ý: Tất cả vân tay đã được đăng ký trong thiết bị đều có thể xác thực.",
+    "change_passcode": "Đổi mã khóa đăng nhập",
+    "login_only_this_service": "Chỉ đăng nhập bằng thiết bị này",
+    "change_language": "Đổi ngôn ngữ",
+    "password_recovery_info": "Thông tin khôi phục mã khóa",
+    "app_info": "Thông tin ứng dụng",
+    "enter_phone_number_or_email":
+      "Nhập số điện thoại hoặc email dự phòng để xác minh khi quên mật khẩu",
+    "back_up_phone_number": "Số điện thoại dự phòng",
+    "back_up_email": "Email dự phòng"
+  },
+  "change_passcode": {
+    "title": "Đổi mã khóa",
+    "enter_current_passcode": "Nhập mã khóa hiện tại",
+    "enter_new_passcode": "Nhập mã khóa mới",
+    "enter_new_passcode_repeat": "Nhập lại mã khóa mới",
+    "passcode_changing_success": {
+      "title": "Đổi mã khóa thành công",
+      "message": "Hãy sử dụng mã khóa mới trong lần đăng nhập tới"
+    }
+  },
+  "app_info": {
+    "ononpay_app": "Ứng dụng Trip|Contract",
+    "version": "Phiên bản",
+    "development_by":
+      "Phát triển bởi Công ty cổ phần dịch vụ di động Trip|Contract Việt Nam \n144 Đội Cấn, Ba Đình, Hà Nội",
+    "app_info": "Thông tin ứng dụng",
+    "vote_for_ononpay": "Bình chọn cho Trip|Contract",
+    "ononpay_on_fb": "Trip|Contract trên facebook",
+    "ononpay_website": "Website Trip|Contract",
+    "termsof_use": "Điều khoản sử dụng"
+  },
+  "payment_limit": {
+    "change_limited": "Thay đổi hạn mức",
+    "choose_limited": "Chọn hạn mức thanh toán",
+    "not_set_limited": "Không thiết lập hạn mức"
+  },
+  "update_profile": {
+    "edit_info": "Sửa thông tin",
+    "save": "Lưu",
+    "cancel": "Hủy",
+    "dialog_update_info": {
+      "title": "Lưu thông tin thành công",
+      "content": "Thông tin của bạn đang được xác thực"
+    }
+  }
+}

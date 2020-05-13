@@ -1,0 +1,280 @@
+openapi: 3.0.0
+info:
+  version: 0.0.1
+  title: trip-contract-operators
+paths:
+  '/voyages/{id}':
+    x-swagger-router-controller: voyages
+    get:
+      tags:
+        - voyages
+      description: 'Get voyage object by client id.'
+      operationId: getVoyageById
+      parameters:
+        - name: id
+          in: path
+          description: The voyage id of a voyage object.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VoyageObject'
+        '403':
+          description: Error Occured
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      tags:
+        - voyages
+      description: 'Update voyage object by client id.'
+      operationId: updateVoyageById
+      parameters:
+        - name: id
+          in: path
+          description: The voyage id of a voyage object.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VoyageObject'
+        '403':
+          description: Error Occured
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VoyageObject'
+        description: The object contains voyage request.
+    delete:
+      tags:
+        - voyages
+      description: Delete the voyage object by client id. All the voyages will be deleted forever.
+      operationId: deleteVoyagesById
+      parameters:
+        - name: id
+          in: path
+          description: The client id of a voyage object.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VoyageObject'
+        '403':
+          description: Error Occured
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /voyages:
+    x-swagger-router-controller: voyages
+    get:
+      tags:
+        - voyages
+      description: 'Get voyages object by client id.'
+      operationId: getVoyages
+      parameters:
+        - name: name
+          in: query
+          description: The voyage name of a voyage object.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VoyageObjects'
+        '403':
+          description: Error Occured
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      tags:
+        - voyages
+      description: 'Create voyage object bases on voyage id.'
+      operationId: createVoyages
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VoyageObjects'
+        '403':
+          description: Error Occured
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VoyageObject'
+        description: The object contains voyage request.
+        required: true
+      x-code-samples:
+        - lang: 'NodeJS'
+          source: |
+            var request = require('request');
+            function createVoyages(certRequest) {
+              return new Promise((resolve, reject) => {
+                request.post({
+                  'url': 'http://localhost:6004/voyages/clients',
+                  'json': certRequest
+                }, ((error, response, body) => {
+                  error? reject(error): resolve(body);
+                }));
+              });
+            }
+            createVoyages({
+              'client_id': 1307,
+              'password': 'secret123456'
+            }).then((data) => {
+              console.log(data);
+            }, (error) => {
+              console.error(error);
+            })
+        - lang: 'CURL'
+          source: |
+            curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/html' -d '{"client_id": 1307,"password": "secret123456"}' 'http://localhost:6004/voyages/clients'
+servers:
+  - url: /
+components:
+  schemas:
+    x-any:
+      properties: {}
+    StationStop:
+      description: A concept named StationStop
+      properties:
+        $class:
+          default: org.tripcontract.network.StationStop
+          description: The class identifier for this type
+          type: string
+        depatureTime:
+          type: string
+          format: date-time
+        arrivalTime:
+          type: string
+          format: date-time
+        stopStatus:
+          enum:
+            - RESERVED
+            - ONTIME
+            - DELAYED
+            - PASSED
+            - ARRIVING
+            - WAITING
+            - CLOSED
+          type: string
+        parkinglot:
+          $ref: '#/components/schemas/x-any'
+        stationId:
+          type: string
+        stationAddress:
+          type: string
+        stationName:
+          type: string
+        id:
+          type: string
+      required:
+        - depatureTime
+        - arrivalTime
+        - stopStatus
+        - stationId
+        - stationAddress
+        - stationName
+    VoyageObject:
+      description: An asset named Voyage
+      properties:
+        $class:
+          default: org.tripcontract.network.Voyage
+          description: The class identifier for this type
+          type: string
+        voyageId:
+          description: The instance identifier for this type
+          type: string
+        voyageName:
+          type: string
+        voyageDesc:
+          type: string
+        costPerPerson:
+          type: number
+          format: double
+        estimatedDistance:
+          type: number
+          format: double
+        estimatedMinutes:
+          type: number
+          format: double
+        stationStops:
+          type: array
+          items:
+            $ref: '#/components/schemas/StationStop'
+        voyageStatus:
+          enum:
+            - CREATED
+            - ACTIVATED
+            - DEACTIVATED
+            - VIN_ASSIGNED
+            - DRV_ASSIGNED
+            - STARTED
+            - CANCELLED
+            - FINISHED
+          type: string
+        vehicle:
+          description: The identifier of an instance of vehicle
+          $ref: '#/components/schemas/x-any'
+        driver:
+          description: The identifier of an instance of driver
+          $ref: '#/components/schemas/x-any'
+        operator:
+          description: The identifier of an instance of operator
+          $ref: '#/components/schemas/x-any'
+      required:
+        - voyageId
+        - voyageName
+        - costPerPerson
+        - estimatedDistance
+        - estimatedMinutes
+        - voyageStatus
+        - operator
+    VoyageObjects:
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/VoyageObject'
+    ErrorResponse:
+      required:
+        - code
+      properties:
+        code:
+          type: string
+        message:
+          type: string

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Trip|Contract - A smart contract system</title>
+  <base href="/">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Opta Sample Data" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="tripcontract/bower_components/components-font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" href="tripcontract/bower_components/angular-ui-notification/dist/angular-ui-notification.min.css">
+  
+  <link rel="stylesheet" href="tripcontract/less/stylesheets/assets/stylesheets/colors.css">
+  <link rel="stylesheet" href="tripcontract/less/stylesheets/assets/stylesheets/common.css">
+  <link rel="stylesheet" href="tripcontract/assets/stylesheets/fonts.css">
+  <link rel="stylesheet" href="tripcontract/assets/stylesheets/bootstrap-grid.css">
+
+  <link rel="stylesheet" href="tripcontract/less/stylesheets/app/directives/header/header.css">
+  <link rel="stylesheet" href="tripcontract/less/stylesheets/app/directives/sidebar/sidebar.css">
+  <link rel="stylesheet" href="tripcontract/less/stylesheets/app/directives/vehicle-table/vehicle-table.css">
+  <link rel="stylesheet" href="tripcontract/less/stylesheets/app/directives/blockchain-view/blockchain-view.css">
+  <link rel="stylesheet" href="tripcontract/less/stylesheets/app/directives/action-tile/action-tile.css">
+  <link rel="stylesheet" href="tripcontract/less/stylesheets/app/views/login/login.css">
+  <link rel="stylesheet" href="tripcontract/less/stylesheets/app/views/voyage/index.css">
+  <link rel="stylesheet" href="tripcontract/less/stylesheets/app/views/inventory/inventory.css">
+
+  <script src="tripcontract/bower_components/moment/min/moment-with-locales.min.js"></script>
+  <script src="tripcontract/bower_components/moment-timezone/moment-timezone.js"></script>
+  
+  <script src="tripcontract/bower_components/angular/angular.js"></script>
+  <script src="tripcontract/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="tripcontract/bower_components/d3/d3.min.js"></script>
+  <script src="tripcontract/bower_components/angular-ui-notification/dist/angular-ui-notification.min.js"></script>
+
+  <script src="tripcontract/app/directives/vehicle-table/vehicle-table.directive.js"></script>
+
+  <script src="tripcontract/app/app.js"></script>
+
+  <script src="tripcontract/app/views/voyage/manage/offer-new-trip.controller.js"></script>
+  <script src="tripcontract/app/views/voyage/route/voyage-route.controller.js"></script>
+  <script src="tripcontract/app/views/voyage/vin-assign/vin-assign.controller.js"></script>
+  <script src="tripcontract/app/views/voyage/drv-assign/drv-assign.controller.js"></script>
+  <script src="tripcontract/app/views/voyage/ready/ready-for-sale.controller.js"></script>
+
+  <script src="tripcontract/app/directives/header/header.directive.js"></script>
+  <script src="tripcontract/app/directives/sidebar/sidebar.directive.js"></script>
+  <script src="tripcontract/app/directives/action-tile/action-tile.directive.js"></script>
+
+</head>
+
+<body ng-app="bc-tripcontract" ng-controller="AppCtrl">
+  <div ui-view="" class="bc-container"></div>
+</body>
+
+</html>

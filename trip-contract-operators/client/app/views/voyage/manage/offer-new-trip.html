@@ -1,0 +1,56 @@
+<bc-man-sidebar></bc-man-sidebar>
+
+<div class="bc-man-dashboard">
+  <h1>
+    Welcome Bernard!
+  </h1>
+
+  <h5>Setup A Voyages</h5>
+  <div class="bottom-holder">
+    <div class="card card-secondary card-manufacture">
+      <div class="card-block">
+          <h5 class="card-title">Offer New Voyage</h5>
+          <p>Planning a long trip can be a daunting task. Where do you begin? What’s step one? What’s step two? What’s step three? It’s
+              easy to get overwhelmed in the beginning, especially when you haven’t done something like this before.</p>
+          <em style="font-size: 10pt">Defining where you want to go sets a goal to work toward. A lot of people talk vaguely about travel. They never say where
+              they are going, just that they are going. Picking a destination is immensely important, as it gives you a definite goal.</em>      
+      </div>
+      <div class="btn-groups" style="padding: 20px 10px">
+        <a href="/operation/{{operation.nextId()}}#{{operation.voyageId}}">
+          <button class="btn btn-primary" ng-click="nextSetup()">{{ operation.name() }}</button>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <div class="bc-man-overview">
+    <h5>
+      Operating Status
+      <a href="/operation/voyages"><button class="btn btn-secondary">Voyages</button></a>
+      <a ng-if="selectedVoyageIndex!=-1" href="/operation/vin-assign/{{voyages[selectedVoyageIndex].voyageId}}"><button class="btn fade">Vehicle Assign</button></a>
+      <a ng-if="selectedVoyageIndex!=-1" href="/operation/drv-assign/{{voyages[selectedVoyageIndex].voyageId}}"><button class="btn fade">Driver Assign</button></a>
+    </h5>
+    <div class="graphs">
+      <div class="block-main row" alt="Vehicle Details">
+        <div class="block-field" ng-repeat="voyage in voyages" ng-class="{ 'selected': selectedVoyageIndex == $index}" ng-click="onVoyageSelect($index)">
+          <i class="fa fa-{{(voyage.voyageType || 'car').toLowerCase()}}" style="width: 20px;text-align: center;"></i> | {{voyage.voyageName}}<i> | {{voyage.voyageDesc}}</i>
+          <i class="fa pull-right" ng-class="{ 'fa-check': selectedVoyageIndex == $index}"></i>
+        </div>
+      </div>
+      <div class="time-table row" alt="Driver Details">
+        <span class="date-field btn btn-default pull-left">Operated Date: {{getVoyageOperatedDate()}}</span>
+        <span class="date-field btn btn-default pull-right">Departure Time: {{getVoyageDeparture()}}</span>  
+      </div>
+      <div class="block-info row pull-left" alt="Service Details" ng-if="selectedVoyageIndex!=-1 && !voyages[selectedVoyageIndex].vehicle">
+          <div style="color: whitesmoke;"><h4>No Vehicle Assigned</h4></div>
+          <a href="/operation/vin-assign/{{voyages[selectedVoyageIndex].voyageId}}" style="color: #ffd640; text-decoration: none" class="btn btn-secondary">Select Vehicle <i class="fa fa-play"></i></a>
+      </div>
+      <div class="block-info row pull-right" alt="Service Details" ng-if="selectedVoyageIndex!=-1 && !voyages[selectedVoyageIndex].driver">
+          <div style="color: whitesmoke;"><h4>No Driver Assigned</h4></div>
+          <a href="/operation/drv-assign/{{voyages[selectedVoyageIndex].voyageId}}" style="color: #ffd640; text-decoration: none" class="btn btn-secondary">Select Driver <i class="fa fa-play"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

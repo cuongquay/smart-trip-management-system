@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "696932787255",
+    "firebase_url": "https://tripcontract-mua-sam-thong-minh.firebaseio.com",
+    "project_id": "tripcontract-mua-sam-thong-minh",
+    "storage_bucket": "tripcontract-mua-sam-thong-minh.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:696932787255:android:15e853f78243dbe5",
+        "android_client_info": {
+          "package_name": "com.tripcontract.apps"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "696932787255-4n0vijbjd812qm3ragc7asjfknvk0iaa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0k1iPgFi2LwyoTeVBv1lB_5D3cNcy9Cs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

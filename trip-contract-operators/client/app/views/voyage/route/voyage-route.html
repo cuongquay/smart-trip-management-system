@@ -1,0 +1,77 @@
+<bc-man-sidebar></bc-man-sidebar>
+
+<div class="bc-man-dashboard">
+  <h1>
+    Welcome Bernard!
+  </h1>
+
+  <h5>Setup A Voyages</h5>
+  <div class="bottom-holder">
+    <div class="card card-secondary card-manufacture">
+      <div class="card-block">
+            <h5 class="card-title">Voyage Information</h5>
+            <p class="status" ng-class="loading ? 'status-locked' : 'status-normal'">
+                <span class="field">Name</span>
+                <span class="data pull-right">{{routes[selectedRouteIndex].voyageName}}</span>
+            </p>
+            <p class="status" ng-class="loading ? 'status-locked' : 'status-normal'">
+                <span class="field">Transport Type</span>
+                <span class="data pull-right">By {{routes[selectedRouteIndex].voyageType}}</span>
+            </p>
+            <p class="status" ng-class="loading ? 'status-locked' : 'status-normal'">
+                <span class="field">Cost Per Person</span>
+                <span class="data pull-right">{{routes[selectedRouteIndex].costPerPerson | currency : routes[selectedRouteIndex].costUnit : 0}}</span>
+            </p>
+            <p class="status" ng-class="loading ? 'status-locked' : 'status-normal'">
+                <span class="field">Departure Time</span>
+                <span class="data pull-right">{{getVoyageTime(timetable[selectedTimeIndex].value, 0)}}</span>
+            </p>
+            <p class="status" ng-class="loading ? 'status-locked' : 'status-normal'">
+                <span class="field">Arrival Time</span>
+                <span class="data pull-right">{{getVoyageTime(timetable[selectedTimeIndex].value, 90)}}</span>
+            </p>
+            <p class="status" ng-class="loading ? 'status-locked' : 'status-normal'">
+                <span class="field">Operated Date</span>
+                <span class="data pull-right">{{getVoyageDate(datetable[selectedDateIndex].value)}}</span>
+            </p>
+    </div>
+      <div class="btn-groups" style="padding: 20px 10px">
+        <a ng-href="javascript:void(0);">
+          <button class="btn btn-primary" ng-click="nextSetup()" ng-disabled="loading">{{ operation.name() }}
+            <i class="fa" ng-class="{ 'fa-spin fa-spinner': loading }"></i></button>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <div class="bc-man-overview">
+    <h5>
+      Operating Status
+      <a href="/operation/voyages"><button class="btn fade">Voyages</button></a>
+      <a href="/operation/voyage-route"><button class="btn btn-secondary">New Voyage</button></a>
+    </h5>
+    <div class="graphs" style="color: #5d6173">
+      <div class="block-main row" alt="Trip Route Details">
+        <div class="block-field" ng-repeat="route in routes" ng-class="{ 'selected': selectedRouteIndex == $index}" ng-click="onRouteSelect($index)">
+          <i class="fa fa-{{route.voyageType.toLowerCase()}}" style="width: 20px;text-align: center;"></i> | {{route.voyageName}}<i> | {{route.voyageDesc}}</i>
+          <i class="fa pull-right" ng-class="{ 'fa-check': selectedRouteIndex == $index}"></i>
+        </div>
+      </div>
+      <div class="time-table row" alt="Trip Route Details">
+        <div class="timetable pull-left" ng-class="" ng-repeat="time in timetable" ng-click="onTimeSelect($index)">
+            <span class="time-field btn btn-secondary" ng-class="{ 'selected': selectedTimeIndex == $index}">{{time.value}}</span>
+        </div>
+      </div>
+      <div class="time-table row" alt="Trip Route Details">
+          <div class="datetable pull-left" ng-class="" ng-repeat="date in datetable" ng-click="onDateSelect($index)">
+              <span class="date-field btn btn-default" ng-class="{ 'selected': selectedDateIndex == $index}">{{date.value}}</span>
+          </div>
+        </div>
+      <div class="block-none row" alt="Trip Route Details">
+          <h4 style="color: whitesmoke;">Estimated Route</h4><span class="time-field btn btn-primary">1 hour 30 min | 92 km</span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

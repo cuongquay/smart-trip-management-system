@@ -1,0 +1,6 @@
+{
+  "name": "maps",
+  "private": true,
+  "license": "MIT",
+  "main": "index.js"
+}

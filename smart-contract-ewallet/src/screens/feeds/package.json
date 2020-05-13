@@ -1,0 +1,6 @@
+{
+  "name": "feeds",
+  "private": true,
+  "license": "MIT",
+  "main": "index.js"
+}

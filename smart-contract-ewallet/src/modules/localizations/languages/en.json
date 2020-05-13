@@ -1,0 +1,973 @@
+{
+  "common": {
+    "ok": "OK",
+    "cancel": "Cancel",
+    "error": "Error",
+    "call": "Call",
+    "app_name": "Flash - Trip|Contract",
+    "update": "Update",
+    "share":
+      "A lot of REFUNDS up to 10% of the purchase value from Trip|Contract Applications - Smart Payments are waiting for you. Quickly download the app at: https://apps.tripcontract.com/dl to have the interesting experience! ",
+    "tos": "Terms and Conditions",
+    "term_condition_title": "Welcome to Trip|Contract!\n\n",
+    "term_condition":
+      "These terms and conditions apply to your use of the Trip|Contract application and OnOnpay service. By signing up you are agreeing to all of the terms and conditions mentioned here.\n\nPlease click to read our ",
+    "term_condition_link": "Terms and Conditions."
+  },
+  "message": {
+    "network": {
+      "title": "Network connection information",
+      "error":
+        "There is no network connection to perform this service. Please check your WiFi or 3G / 4G connection in the mobile device."
+    },
+    "logout": {
+      "title": "Exit the application",
+      "confirmation": "Thank you for using Trip|Contract.",
+      "action": "Logout"
+    },
+    "notification": {
+      "delete": {
+        "title": "Delete notification message",
+        "confirmation":
+          "Are you sure you want to delete the notification message from the app?",
+        "action": "Delete"
+      }
+    },
+    "support": {
+      "title": "Customer support",
+      "description":
+        "Press Call to connect to the operator (1800 6751) Note that your call will be subject to telecommunication charges as specified.",
+      "action": "Call"
+    },
+    "cancel": "Cancel",
+    "accept": "Close"
+  },
+  "header": {
+    "back": "Back"
+  },
+  "dialogs": {
+    "over_3": {
+      "description":
+        "Your account has been locked due to incorrect login \n three times. Please call the operator for assistance.",
+      "call_help": "Call 1800 6751",
+      "dismiss": "Ignore"
+    },
+    "update_app": {
+      "title": "There is a new update!",
+      "content": "Please update the application \nto use the new features",
+      "buttonText": "Update",
+      "appstore_id": "id1293678332",
+      "playstore_id": "com.tripcontract.mobile"
+    },
+    "safety_information": {
+      "title": "Information security",
+      "Nội dung":
+        "Trip|Contract is committed not to disclose any of your information in any form to third parties.",
+      "detail": "View details",
+      "privacy_policy": "Privacy Policy",
+      "close": "Close"
+    },
+    "logout": {
+      "are_you_sure": "Are you sure you want to \nlog out the account?",
+      "logout": "Logout",
+      "ignor": "Ignore"
+    },
+    "refill_methods": {
+      "recharge_into_account": "Recharge account",
+      "close_the_window": "Close window"
+    },
+    "topup_card": {
+      "code": "Tag code"
+    },
+    "item_card": {
+      "copy": "Copy",
+      "seri": "Seri"
+    }
+  },
+  "errors": {
+    "CurrentPasscodeInvalidException": {
+      "title": "The current lock code is incorrect",
+      "message": "Please enter again."
+    },
+    "NewPasscodeSameOldPasswordException": {
+      "title": "The new lock code should not be the same as the current one.",
+      "message": "Please check again."
+    },
+    "MultipleLoginException": {
+      "title": "Signing in on multiple devices",
+      "message":
+        "The account is not allowed to log in on this device. Please enter a different number or contact hotline for assistance."
+    },
+    "IncorrectFormatPhoneNumberException": {
+      "title": "Phone number is malformed",
+      "message": "Please check again"
+    },
+    "LoginVerifyIncorrectCodeException": {
+      "title": "You entered the wrong key {{retryLeft}}",
+      "message": "Please re-enter the lock code"
+    },
+    "LoginVerifyIncorrectCodeExceptionPasscode": {
+      "title": "Incorrect verification code, and {{retryLeft}} attempts",
+      "message": "Please check again"
+    },
+    "LoginVerifyIncorrectCodeExceptionOTP": {
+      "title": "Incorrect verification code, and {{retryLeft}} attempts",
+      "message": "Please check again"
+    },
+    "PasscodeResetAddressNotFoundException": {
+      "title": "Address verification error",
+      "message": "Account recovery information does not exist"
+    },
+    "LoginRequestFailedException": {
+      "title": "Send failure request",
+      "message": "Please try again."
+    },
+    "LoginVerifyExpiredException": {
+      "title": "Expired login required",
+      "message": "Please try again."
+    },
+    "PasscodeExistedException": {
+      "title": "The password already exists",
+      "message": "Please check again"
+    },
+    "PasscodeDuplicatedException": {
+      "title": "Reserve does not match the primary phone number.",
+      "message": "Please check again"
+    },
+    "PasscodeResetNotVerifiedException": {
+      "title": "Request to reset unencrypted password",
+      "message": "Please check again"
+    },
+    "PasscodeResetRequestNotFoundException": {
+      "title": "Request to send code does not exist",
+      "message": "Please repeat the request to send confirmation code"
+    },
+    "VerifyExpiredException": {
+      "title": "Expiration code",
+      "message": "Please repeat the request to send confirmation code"
+    },
+    "NotActiveException": {
+      "title": "Your account is locked",
+      "message": "Please call 1800-6751 for support"
+    },
+    "LoginVerifyOverTimeIncorrectCodeException": {
+      "title": "Account locked",
+      "message":
+        "You entered the wrong PIN 3 times. Your account is temporarily locked."
+    },
+    "MerchantNotActiveException": {
+      "title": "This shop is temporarily unavailable",
+      "message": "Please trade at another store"
+    },
+    "NotFoundHttpException": {
+      "title": "Can not find the corresponding agent",
+      "message": "Please enter a different phone number"
+    },
+    "NotValidPhoneNumberException": {
+      "title": "No reseller support",
+      "message": "Please check again"
+    },
+    "RedeemNeedPurchaseFirstException": {
+      "title": "Transaction is invalid",
+      "message": "Please buy coupons to continue and use the bonus"
+    },
+    "InputCodesDoNotMatch": {
+      "title": "Confirmation key not matched",
+      "message": "Please check again"
+    },
+    "AmountInvalid": {
+      "title": "Invalid amount",
+      "message": "The payment amount needs to be more than 1,000."
+    },
+    "PINEmpty": {
+      "title": "PIN must not be blank",
+      "message": "Please check again."
+    },
+    "PasscodeEmpty": {
+      "title": "Passcode must not be empty",
+      "message": "Please check again."
+    },
+    "ConfirmationCodeEmpty": {
+      "title": "Confirmation code must not be blank",
+      "message": "Please check again."
+    },
+    "AmountNotSelected": {
+      "title": "Error",
+      "message": "The face value must not be empty"
+    },
+    "PaymentMethodNotSelected": {
+      "title": "Error",
+      "message": "Payment method must not be blank"
+    },
+    "InvalidResetAddress": {
+      "title": "Invalid address",
+      "message": "Please check again"
+    },
+    "UnexpectedError": {
+      "title": "There was an error",
+      "message": "Please try again in a few minutes"
+    },
+    "PhoneNotEntered": {
+      "title": "Phone number is empty",
+      "message": "Please check again."
+    },
+    "BackupAddressNotEntered": {
+      "title": "confirmation address is empty",
+      "message": "Please check again."
+    },
+    "PhoneInvalid": {
+      "title": "Incorrect cell ID",
+      "message": "Please check again."
+    },
+    "PromotionAccumulatedGoodsException": {
+      "title": "Invalid promotion selected",
+      "message": "Please check the promotion & try again"
+    },
+    "PromotionAccumulatedCouponException": {
+      "title": "Invalid promotion selected",
+      "message": "Please check the promotion & try again"
+    },
+    "PromotionCouponValueException": {
+      "title": "Invalid promotion selected",
+      "message": "Please check the promotion & try again"
+    },
+    "PromotionDateException": {
+      "title": "Invalid promotional code to use",
+      "message": "Please check again"
+    },
+    "PromotionFirstCouponException": {
+      "title": "Invalid promotional code",
+      "message": "Please check again"
+    },
+    "PromotionFirstPurchaseException": {
+      "title": "Invalid promotional code",
+      "message": "Please check again"
+    },
+    "PromotionFirstTransactionException": {
+      "title": "Invalid promotional code",
+      "message": "Please check again"
+    },
+    "PromotionGoodsValueException": {
+      "title": "Promotional code does not apply to this GD",
+      "message": "Please check again"
+    },
+    "PromotionQtyAccumulatedCouponException": {
+      "title": "Invalid promotional code",
+      "message": "Please check again"
+    },
+    "PromotionQtyAccumulatedGoodsException": {
+      "title": "Invalid promotional code",
+      "message": "Please check again"
+    },
+    "PromotionQtyMerchantBuyCouponException": {
+      "title": "Invalid promotional code",
+      "message": "Please check again"
+    },
+    "PromotionQtyMerchantBuyGoodsException": {
+      "title": "Invalid promotional code",
+      "message": "Please check again"
+    },
+    "PromotionQtyReferralException": {
+      "title": "Invalid promotional code",
+      "message": "Please check again"
+    },
+    "PromotionRestrictAreaException": {
+      "title": "Invalid promotion selected",
+      "message": "Please check the promotion & try again"
+    },
+    "PromotionRestrictBusinessTypeException": {
+      "title": "Invalid promotion selected",
+      "message": "Please check the promotion & try again"
+    },
+    "PromotionRestrictCustomerException": {
+      "title": "Invalid promotion selected",
+      "message": "Please check the promotion & try again"
+    },
+    "PromotionRestrictMerchantException": {
+      "title": "Invalid promotion selected",
+      "message": "Please check the promotion & try again"
+    },
+    "PromotionRestrictRewardDailyException": {
+      "title": "Invalid promotion selected",
+      "message": "Please check the promotion & try again"
+    },
+    "PromotionTransactionSubtypeException": {
+      "title": "Promotional code does not apply to this GD",
+      "message": "Please check again"
+    },
+    "PromotionTransactionTypeException": {
+      "title": "Promotional code does not apply to this GD",
+      "message": "Please check again"
+    },
+    "PromotionUseException": {
+      "title": "Promotional code expires",
+      "message": "Please check again"
+    },
+    "PromotionInvalid": {
+      "title": "Invalid promotional code",
+      "message": "Please check again."
+    },
+    "InvalidPromotionException": {
+      "title": "Invalid promotion selected",
+      "message": "Please try another one"
+    },
+    "TokenExpiredException": {
+      "title": "Session was expired",
+      "message": "Please log in again!"
+    },
+    "MerchantNotFoundException": {
+      "title": "Invalid QR code",
+      "message": "Please contact us for support"
+    },
+    "MerchantCodeNotFoundException": {
+      "title": "Code agent does not exist.",
+      "message": "Please check again."
+    },
+    "MerchantNotFound": {
+      "title": "Merchant not found",
+      "message": "Agent not found with corresponding code. Please try again."
+    },
+    "MerchantNotActive": {
+      "title": "Agent not active",
+      "message": "Please use another agent code."
+    },
+    "RedeemTooFastAndFuriousException": {
+      "title": "Transaction is invalid",
+      "message": "Please do it in a few minutes."
+    },
+    "PromotionNotFoundException": {
+      "title": "Promotional code does not exist.",
+      "message": "Please check again."
+    },
+    "NoInternetConnection": {
+      "title": "lost network connection",
+      "message": "Please try again."
+    },
+    "PromoCodeInvalid": {
+      "title": "Promotional code does not exist",
+      "message": "Please check again."
+    },
+    "InitTransactionFailedException": {
+      "title": "An unexpected error occurred",
+      "message": "Please try again"
+    },
+    "PromotionCodeNotFound": {
+      "title": "Promotional code does not exist.",
+      "message": "Please check again"
+    },
+    "AmountInvalidException": {
+      "title": "Invalid denomination.",
+      "message": "Please check again"
+    },
+    "ProviderInvalidException": {
+      "title": "Invalid network operator.",
+      "message": "Please check again"
+    },
+    "QuantityInvalidException": {
+      "title": "Invalid card number.",
+      "message": "Please check again"
+    },
+    "ServiceMaintenance": {
+      "title": "Home is being maintained. ",
+      "message": "Please come back later"
+    },
+    "TypeInvalidException": {
+      "title": "Invalid subscription type.",
+      "message": "Please check again"
+    },
+    "PhoneNumberInvalidException": {
+      "title": "Invalid phone number.",
+      "message": "Please check again"
+    },
+    "OutsBalanceNotEnoughException": {
+      "title": "Balance is not enough to make a transaction. ",
+      "message": "Please check again"
+    },
+    "ValidationException": {
+      "title": "Invalid data",
+      "message": "Please check again"
+    },
+    "LoginVerifyFailedException": {
+      "title": "Authentication failed",
+      "message": "Please try again"
+    },
+    "TokenNotProvidedException": {
+      "title": "You logged out",
+      "message": "Please log in to continue"
+    },
+    "UpdateProfileFailException": {
+      "title": "Update failed information",
+      "message": "Please try again later."
+    },
+    "InvalidProfileNameException": {
+      "title": "Name is not in proper format",
+      "message": "Please try again"
+    },
+    "MinimumIdentityCardException": {
+      "title": "ID is not valid format",
+      "message": "Please try again"
+    },
+    "EmptyIdentityCardException": {
+      "title": "ID must not be blank",
+      "message": "Please try again"
+    },
+    "InvalidResetEmail": {
+      "title": "Invalid Email",
+      "message": "Please try again"
+    },
+    "InvalidResetPhone": {
+      "title": "Invalid ID",
+      "message": "Please try again"
+    },
+    "EmptyResetEmail": {
+      "title": "Email must not be empty",
+      "message": "Please try again"
+    },
+    "EmptyResetPhone": {
+      "title": "Phone must not be empty",
+      "message": "Please try again"
+    },
+    "EmptyProfileNameException": {
+      "title": "Name must not be empty",
+      "message": "Please try again"
+    },
+    "MinimumProfileNameException": {
+      "title": "Name contains at least 2 alphabetic characters",
+      "message": "Please try again"
+    },
+    "SpecialCharactersNotSupported": {
+      "title": "does not contain special characters",
+      "message": "Please try again"
+    },
+    "NumberOnlyNotSupported": {
+      "title": "Name contains at least 2 alphabetic characters",
+      "message": "Please try again"
+    },
+    "WordNotSupported": {
+      "title": "ID card does not contain letter",
+      "message": "Please try again"
+    },
+    "RequireSoftwareUpdateException": {
+      "title": "Application is too old",
+      "message": "Please update"
+    },
+    "ErrorAgeException": {
+      "title": "Year of birth does not match",
+      "message": "Please update"
+    },
+    "PaymentStateNotFoundException": {
+      "title": "An unexpected error occurred with your order",
+      "message": "Please try again or contact us for support"
+    },
+    "PaymentProcessDeniedException": {
+      "title": "You do not have permission to perform this order",
+      "message": "Please try again"
+    },
+    "OrderCreateFailedException": {
+      "title": "An unexpected error occurred",
+      "message": "Please try again"
+    },
+    "AmountTooLowException": {
+      "title": "face value must be greater than 1000 đ",
+      "message": "Please check again"
+    },
+    "PaymentProcessFailedException": {
+      "title": "An unexpected error occurred",
+      "message": "Please try again"
+    },
+    "CouldNotTransferToYourselfException": {
+      "title": "Invalid phone number",
+      "message": "Please enter a different number"
+    },
+    "CustomerNotFoundException": {
+      "title": "Unregistered account number",
+      "message": "Please enter a different number"
+    },
+    "CustomerNotActiveException": {
+      "title": "The recipient's account is currently locked",
+      "message": "Please enter a different number"
+    },
+    "ProcessFailedException": {
+      "title": "There was an error",
+      "message": "Please check and try again"
+    },
+    "AccountNotActivatedException": {
+      "title": "Account not activated",
+      "message": "Please check and try again"
+    },
+    "InvalidParamUserSettingException": {
+      "title": "An unexpected error occurred",
+      "message": "Please try again"
+    },
+    "InvalidOrderBilledAmountException": {
+      "title": "Giá trị thanh toán ko hợp lệ",
+      "message": "Vui lòng kiểm tra và thử lại"
+    },
+    "GetAccountsFailException": {
+      "title": "An unexpected error occurred",
+      "message": "Please try again"
+    },
+    "OrderNotFoundException": {
+      "title": "An unexpected error occurred",
+      "message": "Please try again"
+    },
+    "InvalidOrderCancelStatusException": {
+      "title": "You cannot cancel this order at the moment",
+      "message": "Please continue or contact us for support"
+    },
+    "OrderUpdateFailedException": {
+      "title": "An unexpected error occurred",
+      "message": "Please try again"
+    },
+    "PayloadInvalidException": {
+      "title": "An unexpected error occurred with your order",
+      "message": "Please try again or contact us for support"
+    },
+    "PaymentAccountInvalidException": {
+      "title": "An unexpected error occurred with your order",
+      "message": "Please try again or contact us for support"
+    },
+    "InvalidOrderSetbackStatusException": {
+      "title": "An unexpected error occurred with your order",
+      "message": "Please try again or contact us for support"
+    },
+    "InvalidSetbackStateException": {
+      "title": "An unexpected error occurred with your order",
+      "message": "Please try again or contact us for support"
+    },
+    "UserProfileNotFoundException": {
+      "title": "An unexpected error occurred",
+      "message": "Please try again"
+    },
+    "ActivityInvalidException": {
+      "title": "An unexpected error occurred",
+      "message": "Please try again"
+    },
+    "SystemUnexpectedException": {
+      "title": "An unexpected error occurred",
+      "message": "Please try again"
+    },
+    "OrderAlreadyFinishException": {
+      "title": "An unexpected error occurred with your order",
+      "message": "Please try again or contact us for support"
+    },
+    "TransferPhoneEmptyException": {
+      "title": "Phone number not empty",
+      "message": "Please try again"
+    }
+  },
+  "buy_code": {
+    "title": "Recharge phone",
+    "prepaid": "Prepaid card",
+    "Postpaid": "Postpaid card"
+  },
+  "tabs": {
+    "tab1": "Homepage",
+    "tab2": "Pay now",
+    "tab3": "History"
+  },
+  "auth": {
+    "label_start": "Enter your phone number",
+    "continue": "Continue",
+    "tos": "Terms and Conditions"
+  },
+  "auth_backtrack": {
+    "start": "Begin",
+    "greeting": "Hello {{name}}, \n welcome back",
+    "another_number": "Enter another phone number"
+  },
+  "confirmation": {
+    "hello": "Enter passcode",
+    "hello2": "Enter confirmation code",
+    "otp_confirm_title": "Please enter the confirmation code",
+    "passcode_confirm_title":
+      "Hello {{phone}} \nPlease enter your password to log in",
+    "passcode_confirm_title_p1": "Hello",
+    "passcode_confirm_title_p2": "\nPlease enter the password to log in",
+    "auto_refresh_after": "Auto-update after {{counter}} seconds",
+    "code_receive_after": "You will receive the code in {{counter}} seconds",
+    "no_code_received": "No code received?",
+    "enter_another_number": "Enter new phone",
+    "forgot_passcode": "Forgotten?",
+    "requested_code_again": "Recover your passcode"
+  },
+  "account_locked": {
+    "info1":
+      "Your account has been locked due to incorrect key input {{count}} times",
+    "info2":
+      "Your account has been locked due to incorrectly entered {{count}} confirmation code"
+  },
+  "passcode_lock": {
+    "passcode_input_reminder":
+      "Please enter the password to protect your account \n",
+    "passcode_reinput": "Retype the password for confirmation \n",
+    "enter_phone_email_backup":
+      "Enter backup phone number or email \n to verify account in case \n you forgot your password",
+    "wrong_verification_code": {
+      "title": "Wrong confirmation code, and {{count}} attempts",
+      "message": "Please check the confirmation code"
+    },
+    "wrong_verification_code_exceeded": {
+      "title": "Enter the wrong confirmation code 3 times",
+      "message": "Please do the operation again"
+    }
+  },
+  "passcode_code": {
+    "title": "Create login key",
+    "title_repeat": "Confirm lock code"
+  },
+  "passcode_recovery": {
+    "enter_phone_email_backup":
+      "Enter backup phone number or \n email to verify password forgotten",
+    "enter_phone_backup":
+      "Enter backup phone number to \n receive verification code",
+    "enter_email_backup":
+      "Enter a backup email to \n receive a verification code",
+    "code_confirm_title": "Enter the confirmation code sent to",
+    "use_backup_email": "Use recovery email",
+    "use_backup_phone": "Use Secondary phone number",
+    "backup_phone": "Secondary phone number",
+    "backup_email": "Recovery email"
+  },
+  "home": {
+    "search": {
+      "title": "Tìm kiếm"
+    },
+    "top_features": {
+      "item1": "Recharge",
+      "item2": "Transaction",
+      "item3": "Get money"
+    },
+    "bottom_features": {
+      "item1": "Transfer money \n through wallet",
+      "item2": "Investment \n",
+      "item3": "Pay bill"
+    },
+    "qr_scan": {
+      "touch_qr": "Slide to scan QR code"
+    },
+    "qr_purchase": {
+      "title": "TRANSACTION CODE"
+    },
+    "insight_news": {
+      "title": "News from Trip|Contract",
+      "description":
+        "No internet connection.\nPlease check your WiFi or 3G settings.",
+      "start_date": "From ",
+      "end_date": " to "
+    }
+  },
+  "modal": {
+    "using": "Using",
+    "use": "Use",
+    "cancel_promotion": "Uncheck",
+    "choose_the_amount": "Choose deposit amount",
+    "enter_confirm_code": "Enter confirmation code",
+    "billed_amount": "Amount",
+    "discount_amount": "Discounted",
+    "total_amount": "Payment Amount",
+    "total_money": "Total money",
+    "recipients": "Move to",
+    "phone": "Phone number",
+    "amount": "Amount",
+    "transaction_success": "Transaction successful",
+    "transaction_success_transfer_money": "Transfer money successfully",
+    "transaction_failed": "Transaction failed",
+    "transaction_failed_error":
+      "An error occurred during the connection \nto the provider. \nPlease repeat the transaction",
+    "transaction_failed_content":
+      "You canceled this transaction. \nAccount in your account \n is preserved.",
+    "transaction_pending": "Transaction is pending",
+    "transaction_pending_processing":
+      "Transaction is being converted. \nPlease wait for the transaction to complete.",
+    "transaction_pending_content":
+      "Account not yet available on the system. \nPlease notify the recipient \nsign up account to receive money.",
+    "change": "Change",
+    "cancel": "Uncheck",
+    "select_promotion_code": "Select promo code",
+    "detail": "Details",
+    "use_code": "Use code",
+    "enter_agency_code": "Enter agent code",
+    "enter_amount": "Enter amount",
+    "ononpay_wallet": "Trip|Contract Wallet",
+    "select_supllier": "Select a service provider",
+    "select_bill_type": "Choose invoice type",
+    "receive_money_instruction_content":
+      "Receive your receipt code to the payer so that he / she uses QR code scanning to scan and transfer money to you quickly and easily.",
+    "my_code": "COUNT YOUR MONEY",
+    "guide": "User Guide",
+    "recharge_ononpay": "Order Recharge to Trip|Contract account",
+    "card_number": "NUMBER",
+    "full_name": "THEY AND THEIR NAME",
+    "expired_date": "DATE ​​OF EXPIRY",
+    "cancel_transaction":
+      "Are you sure you want to \" cancel this transaction? ",
+    "cancel_button_text": "Cancel transaction",
+    "go_back": "Back",
+    "continue": "Continue"
+  },
+  "history": {
+    "title": "Transaction History",
+    "money_in": "Money in",
+    "money_out": "Money out",
+    "money_all": "All",
+    "keys": {
+      "status": "Status",
+      "phone_number": "Phone number",
+      "code": "Tag code",
+      "serial": "Seri",
+      "amount": "Value",
+      "promotion_amount": "Promotional Amount",
+      "promotion_name": "Program Name",
+      "promotion_type": "Promotional Type",
+      "merchant": "Place of transaction",
+      "payment_method": "Form",
+      "created_at": "Transaction time",
+      "description": "Description",
+      "cards": "Card purchases",
+      "payment": "PAYMENT"
+    }
+  },
+  "drawer": {
+    "user_info": "Personal information",
+    "transaction_history": "Transaction history",
+    "money_management": "Money management",
+    "settings": "Application settings",
+    "support": "Customer support",
+    "logout": "Logout",
+    "version": "Version",
+    "logout_confirmation": "Do you want to sign out of the app?"
+  },
+  "payment": {
+    "prepaid": "Prepaid Number",
+    "Postpaid": "Postpaid",
+    "purchase_order": "PAYMENT AT AGENT",
+    "money_transfer": "TRANSFER MONEY",
+    "select_promotion": "CHOOSE PROMOTION",
+    "transaction_confirmation": "CONFIRM TRANSACTION",
+    "transfer_confirmation": "CONFIRM MONEY TRANSFER",
+    "select_account": "SELECT MONEY",
+    "ignore": "Ignore",
+    "topup_phone": {
+      "phone_input_title": "Enter phone number",
+      "select_amount_title": "Choose face value",
+      "button_next": "Continue",
+      "select_qr_title": "Scan the recipient's private code"
+    },
+    "payment_review": {
+      "step_confirm": {
+        "billed_amount": "Money loaded",
+        "transfer_amount": "Transfer amount",
+        "discount_amount": "discounted",
+        "total_amount": "Payment Amount",
+        "continue": "Continue",
+        "pay_with": "Pay with",
+        "select": "Select promo code",
+        "accept": "Confirm",
+        "close": "Close",
+        "warning_title": "Warning",
+        "warning_content":
+          "The recipient account has been idle for a long time. \nTo be sure this account will receive money, please notify the recipient of the sign-in again at the Trip|Contract application."
+      },
+      "card1": {
+        "phone": "phone number",
+        "operator": "operator",
+        "mobile_service": "Type",
+        "amount": "face value"
+      },
+      "card2_title": "Payment method",
+      "card2": {
+        "payment_method": "Current balance"
+      },
+      "promotion_input_placeholder":
+        "Enter the promotional code (if applicable)",
+      "button_payment": "Payment"
+    },
+    "payment_result": {
+      "title_topup": "Transaction has been logged",
+      "title_success": "Successful transaction!",
+      "title_success_transaction": "Payment successful",
+      "title_fail": "Transaction failed \n Please try again.",
+      "button_transaction_history": "Transaction history",
+      "button_balance": "Continue loading into wallet",
+      "button_try_again": "Try again",
+      "button_card": "View card code",
+      "button_home": "About the homepage"
+    },
+    "phone_card": {
+      "title": "Buy phone card",
+      "operator_title": "Select network operator",
+      "amount_title": "Choose face value",
+      "button_next": "Continue"
+    },
+    "reload_balance": {
+      "title": "Load on app",
+      "amount_title": "Choose face value",
+      "select_bank": "Select payment bank",
+      "payment_method_title": "Choose payment method",
+      "domestic_payment": "domestic card",
+      "international_payment": "Visa / Master",
+      "promotion_placeholder": "Enter promotional code (if applicable)",
+      "payment_button": "Payment"
+    },
+    "store_payment": {
+      "title": "Payment"
+    },
+    "wallet_transfer": {
+      "transfer_content": "Message (optional)",
+      "transfer_amount_title": "Transfer amount",
+      "button_next": "Continue"
+    }
+  },
+  "qr_scanning": {
+    "back": "Back",
+    "turn_on_flash": "Turn on flash",
+    "turn_off_flash": "Turn off flash",
+    "enter_phone": "Enter Agent Information",
+    "dialog_camera_request": {
+      "title": "Trip|Contract",
+      "message": "Please turn on Camera to make payment"
+    },
+    "error": "Incorrectly formatted code,",
+    "title": "Camera orientation to QR code \n for transaction"
+  },
+  "map": {
+    "title": "In-store",
+    "current_location": "Your current location",
+    "nearest_merchant": "Store closest to you",
+    "direction": "Directions",
+    "see_all_merchants": "See all stores",
+    "location_dialog_title": "Trip|Contract",
+    "location_dialog_content": "Do you want to enable positioning?",
+    "ok": "Yes",
+    "cancel": "No",
+    "distance_list": "Select store scope"
+  },
+  "map_direction": {
+    "title": "Directions to store"
+  },
+  "merchant_list": {
+    "title": "Store listing",
+    "total_merchants": "There are {{total}} stores"
+  },
+  "merchant_transaction": {
+    "title": "Billing",
+    "amount_form_headline": "You are making payments at",
+    "amount_form_amount_title": "Order value (VND)",
+    "amount_form_promo": "Promotional code (if any)",
+    "amount_form_amountpromotion": "Payment amount (VND)",
+    "enter_phone_title": "Enter phone number or agency code"
+  },
+  "notification": {
+    "title": "Messages",
+    "refresh": "Reload",
+    "read": "Read",
+    "details": "Notification details",
+    "empty": "No new notifications"
+  },
+  "profile": {
+    "header_title": "Personal information",
+    "fullname_title": "Display Name",
+    "fullname": "Full name",
+    "primary_phone": "Phone Number",
+    "birthday": "Birthday",
+    "account_authentication": "Account authentication",
+    "account_unauthentication": "Account not validated",
+    "not_update": "Not updated",
+    "people_id": "ID card number",
+    "take_photo_id_card": "Take a photo ID",
+    "addition_customer_presonal_info": "Your information is",
+    "addition_is_protected": "Secure",
+    "select_photo": "Select photo",
+    "take_photo": "Take photo",
+    "select_photo_from_library": "Choose photo from gallery"
+  },
+  "edit_profile": {
+    "title": "Edit profile",
+    "age_restriction": "You are not in the age over our restriction policy."
+  },
+  "transaction": {
+    "transaction_detail": "Transaction details",
+    "time": "Time",
+    "date": "Date",
+    "order_id": "Order ID",
+    "customer_code": "Customer code",
+    "product_name": "Product Name",
+    "billed_amount": "Amount",
+    "payment_period": "Payment Period",
+    "discount_amount": "Discounted",
+    "total_amount": "Total Payment",
+    "pay_with": "Pay with",
+    "pay_at": "Pay at",
+    "status": "Status",
+    "destination_user": "Move to",
+    "transfers_content": "Transfers",
+    "money_recived": "Money received",
+    "source_user": "Move from"
+  },
+  "money_management": {
+    "title": "Money management",
+    "use": "Use",
+    "using": "Using",
+    "add_new_money_resource": "Add Source",
+    "choose_bank": "Choose bank",
+    "number_card": "Tag Number",
+    "name_user": "Full Cardholder Name (unsigned)",
+    "cmnd": "ID number of cardholder",
+    "ononpay_description":
+      "Trip|Contract applies state-of-the-art security technologies to ensure customer's account security. Trip|Contract commit to completely not store card information."
+  },
+  "setting": {
+    "title": "Application settings",
+    "payment_limit": "Payment limit",
+    "unlimited": "unlimited",
+    "not_accuracy_OTP":
+      "You do not need OTP authentication when paying the amount below the limit.",
+    "fingerprint_authentication": "fingerprint authentication",
+    "note": "All fingerprints registered in the device can be authenticated.",
+    "change_passcode": "Change the login code",
+    "login_only_this_service": "Only sign in with this device",
+    "change_language": "Change language",
+    "password_recovery_info": "Passcode recovery information",
+    "app_info": "Application Information",
+    "enter_phone_number_or_email":
+      "Enter a backup phone number or email to verify password forgotten",
+    "back_up_phone_number": "Backup phone number",
+    "back_up_email": "Backup email"
+  },
+  "change_passcode": {
+    "title": "Change the lock code",
+    "enter_current_passcode": "Enter current passcode",
+    "enter_new_passcode": "Enter new passcode",
+    "enter_new_passcode_repeat": "Re-enter new passcode",
+    "passcode_changing_success": {
+      "title": "Change passcode successfully",
+      "message": "Please use the new passcode when login to"
+    }
+  },
+  "app_info": {
+    "ononpay_app": "Trip|Contract Application",
+    "version": "Version",
+    "development_by":
+      "Developed by Trip|Contract Vietnam Mobile Joint Stock Company \n144 Doi Can, Ba Dinh, Hanoi",
+    "app_info": "Application Information",
+    "vote_for_ononpay": "Vote for Trip|Contract",
+    "ononpay_on_fb": "Trip|Contract on facebook",
+    "ononpay_website": "Trip|Contract Website",
+    "termsof_use": "Terms of Use"
+  },
+  "payment_limit": {
+    "change_limited": "Change limit",
+    "choose_limited": "Choose payment limit",
+    "not_set_limited": "No quota setting"
+  },
+  "update_profile": {
+    "edit_info": "Edit information",
+    "save": "Save",
+    "cancel": "Cancel",
+    "dialog_update_info": {
+      "title": "Save Successful",
+      "content": "Your information is being validated"
+    }
+  }
+}

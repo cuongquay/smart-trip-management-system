@@ -1,0 +1,416 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+namespace org.tripcontract.network
+
+// BASE DEFINTIONS
+
+concept CabinSeat {
+  o String seatName
+  o String seatCode
+  o CabinStatus seatStatus
+}
+
+concept PassengerSeat {
+  o String seatName
+  o String seatCode
+  o String passengerName
+  o Integer passengerAge optional
+  o String passengerID optional
+}
+
+concept Station {
+  o String stationId
+  o String stationAddress
+  o String stationName
+}
+
+concept StationStop extends Station {
+  o DateTime depatureTime
+  o DateTime arrivalTime
+  o StopStatus stopStatus
+  --> Parking parkinglot optional
+}
+
+concept VoyageDetails {
+  o String pickupAddress
+  o String dropOffAddress
+  o Integer numberOfTickets
+  o DateTime depatureTime
+  o DateTime arrivalTime optional
+  o PassengerSeat[] passengerSeats optional
+}
+
+concept VoyageOptions {
+  o Boolean handbag
+  o Boolean baggage
+  o Boolean children
+  o String[] extras
+}
+
+concept VehicleDetails {
+  o CabinSeat[] cabinSeats
+  o String modelType
+  o String plateNumber
+  o String surfaceColour
+  o String manufacture
+}
+
+enum PersonalType {
+  o Customer      // Customers who want a voyage or room
+  o Operator      // Operators who setup voyages and drivers
+  o Driver        // Driver who want a parking or voyage
+  o Owner         // Owner who own the rooms, parkings and vehicle
+}
+
+enum StopStatus {
+  o RESERVED      // The parking lot is reserved suceesfully
+  o ONTIME        // The voyage is on-time as scheduled
+  o DELAYED       // The voyage is delayed as scheduled
+  o PASSED        // This stop has passed by a voyage
+  o ARRIVING      // A voyage is arriving this stop
+  o WAITING       // Voyage is in waiting/breaking time
+  o CLOSED        // This stop has been out of service
+}
+
+enum CabinStatus {
+  o VACANT        // Opening for service booking
+  o OCCUPIED      // Customer booked a seat
+  o INUSED        // Passenger is using this seat
+}
+
+enum ReservationStatus {
+  o OPEN          // Opening for service
+  o PLACED        // Customer voyageOrder a room in a hotel
+  o CONFIRMED     // Owner confirm a room voyageOrder
+  o CANCELED      // Customer cancel a room voyageOrder
+  o REJECTED      // Owner reject a room voyageOrder
+  o CHECKED_IN    // Customer check-in a room
+  o CHECKED_OUT   // Customer checkout the room
+  o CLOSED        // Owner close a service
+}
+
+enum VoyageOrderStatus {
+  o PLACED        // Customer voyageOrder a voyage
+  o CONFIRMED     // Operator confirm an voyageOrder
+  o CANCELLED     // Customer cancel an voyageOrder
+  o REJECTED      // Operator reject an voyageOrderId
+  o CHECKED_IN    // Driver picked-up passengerAge
+  o CHECKED_OUT   // Driver drop-off passengerAge
+  o CLOSED        // System close an oder
+}
+
+enum VoyageStatus {
+  o CREATED       // Operator create a voyage (make a plan)
+  o ACTIVATED     // Operator activate a voyage for sale
+  o DEACTIVATED   // Operator temporary deactivate a voyage
+  o VIN_ASSIGNED  // Operator assign a vehicle to be on the road
+  o DRV_ASSIGNED  // Operator assign a driver to be on trip
+  o STARTED       // Driver start a voyage (on the road)
+  o CANCELLED     // Operator cancel a voyage out of plan
+  o FINISHED      // Driver finish a voyage (off the road)
+}
+
+enum VehicleStatus {
+  o AVAILABLE     // Vehicle is available to book  
+  o BOOKED        // Operator booked a vehicle
+  o CONFIRMED     // Owner confirm a booking
+  o CANCELED      // Operator cancel an booking
+  o REJECTED      // Owner reject a booking
+  o TRANSFERED    // Owner transfered to Operator
+  o RELEASED      // Operator released a vehicle
+}
+
+asset Account identified by accountId {
+  o String accountId
+  o Double balanceAmount
+  o Double balanceCredit
+}
+
+asset Room identified by roomId {
+  o String roomId
+  o String hotelAddress
+  o String hotelName
+  o String roomNumber
+  o Double costPerHour
+  o Integer maxPersons
+  o String references
+  o DateTime checkInTime
+  o DateTime checkOutTime
+  o ReservationStatus roomStatus
+  --> Owner owner optional
+  --> Customer customer optional
+}
+
+asset Parking identified by parkingId {
+  o String parkingId
+  o DateTime checkInTime
+  o DateTime checkOutTime
+  o Double costPerMinutes
+  o ReservationStatus parkingStatus
+  --> Owner owner optional
+  --> Driver driver optional
+}
+
+asset Voyage identified by voyageId {
+  o String voyageId
+  o String voyageName
+  o String voyageDesc optional
+  o Double costPerPerson
+  o Double estimatedDistance
+  o Double estimatedMinutes
+  o StationStop[] stationStops
+  o VoyageStatus voyageStatus
+  --> Vehicle vehicle optional
+  --> Driver driver optional
+  --> Operator operator
+}
+
+asset Vehicle identified by vehicleId {
+  o String vehicleId
+  o Double costPerDistanceUnit
+  o Double maxCapacityPersons
+  o VehicleStatus vehicleStatus
+  o VehicleDetails vehicleDetails optional
+  --> Owner owner optional
+}
+
+asset VoyageOrder identified by voyageOrderId {
+  o String voyageOrderId
+  o VoyageDetails voyageDetails
+  o VoyageOrderStatus voyageOrderStatus
+  o VoyageOptions voyageOptions optional
+  --> Customer customer optional
+  --> Voyage voyage optional
+}
+
+abstract participant Company identified by companyId {
+  o String companyId
+  o String companyName
+  o String companyAddress optional
+}
+
+abstract participant Person identified by personalId {
+  o String screenName optional
+  o String phoneNumber
+  o String personalId
+}
+
+participant Enterprise extends Company {
+  --> Owner entrepreneur
+  --> Owner systemOwner
+  o Double parkingRate
+  o Double operatorRate
+  o Double driverRate
+  o Double systemRate
+}
+
+participant Operator extends Person {
+  --> Enterprise enterprise optional
+  --> Account account
+}
+
+participant Driver extends Person {
+  o String drivingLicense
+  --> Account account
+}
+
+participant Owner extends Person {
+  --> Account account
+  o String registration
+}
+
+participant Customer extends Person {
+  o String occupation
+  --> Account account
+}
+
+transaction BookVoyage {
+  --> Customer customer
+  --> Voyage voyage optional
+  o String voyageOrderId
+  o VoyageDetails voyageDetails
+  o VoyageOptions voyageOptions
+}
+
+event BookVoyageEvent {
+  o String voyageOrderId
+  o VoyageDetails voyageDetails
+  o VoyageOptions voyageOptions
+  --> Customer customer
+  --> Voyage voyage optional
+}
+
+transaction UpdateVoyageOrder {
+  o VoyageOptions voyageOptions
+  o VoyageDetails voyageDetails
+  --> VoyageOrder voyageOrder
+}
+
+event UpdateVoyageOrderEvent {
+  o VoyageOptions voyageOptions
+  o VoyageDetails voyageDetails
+  --> VoyageOrder voyageOrder
+}
+
+transaction UpdateVoyageOrderStatus {
+  o VoyageOrderStatus voyageOrderStatus
+  --> Operator operator optional
+  --> VoyageOrder voyageOrder
+}
+
+event UpdateVoyageOrderStatusEvent {
+  o VoyageOrderStatus voyageOrderStatus
+  --> Operator operator optional
+  --> VoyageOrder voyageOrder
+}
+
+transaction CheckInCheckOutVoyageOrder {
+  o VoyageOrderStatus voyageOrderStatus
+  --> Driver driver
+  --> VoyageOrder voyageOrder
+}
+
+event CheckInCheckOutVoyageOrderEvent {
+  o VoyageOrderStatus voyageOrderStatus
+  --> Driver driver
+  --> VoyageOrder voyageOrder
+}
+
+transaction OfferVoyage {
+  o String voyageId
+  o String voyageName
+  o String voyageDesc optional
+  o Double costPerPerson
+  o StationStop[] stationStops
+  --> Operator operator
+}
+
+event OfferVoyageEvent {
+  o String voyageId
+  o String voyageName
+  o String voyageDesc optional
+  o Double costPerPerson
+  o StationStop[] stationStops
+  o VoyageStatus voyageStatus
+  --> Operator operator
+}
+
+transaction UpdateVoyageStatus {
+  o VoyageStatus voyageStatus
+  --> Driver driver optional
+  --> Vehicle vehicle optional
+  --> Voyage voyage
+}
+
+event UpdateVoyageStatusEvent {
+  o VoyageStatus voyageStatus
+  --> Driver driver optional
+  --> Vehicle vehicle optional
+  --> Voyage voyage
+}
+
+transaction UpdateVoyage {
+  o String voyageName
+  o String voyageDesc optional
+  o StationStop[] stationStops
+  --> Voyage voyage
+}
+
+event UpdateVoyageEvent {
+  o Voyage voyage
+}
+
+transaction OfferParking {
+  o String parkingId
+  o DateTime checkInTime
+  o DateTime checkOutTime
+  o Double costPerMinutes
+  --> Owner owner
+}
+
+event OfferParkingEvent {
+  o String parkingId
+  o DateTime checkInTime
+  o DateTime checkOutTime
+  o Double costPerMinutes
+  o ReservationStatus parkingStatus
+  --> Owner owner optional
+}
+
+transaction OfferRoom {
+  o String roomId
+  o String hotelAddress
+  o String hotelName
+  o String roomNumber
+  o Double costPerHour
+  o Integer maxPersons
+  o String references
+  o DateTime checkInTime
+  o DateTime checkOutTime
+  --> Owner owner
+}
+
+event OfferRoomEvent {
+  o String roomId
+  o String hotelAddress
+  o String hotelName
+  o String roomNumber
+  o Double costPerHour
+  o Integer maxPersons
+  o String references
+  o DateTime checkInTime
+  o DateTime checkOutTime
+  o ReservationStatus roomStatus
+  --> Owner owner optional
+}
+
+transaction CreateUser {
+  o String personalId
+  o String phoneNumber
+  o String screenName optional
+  o String occupation optional
+  o String registration optional
+  o String drivingLicense optional
+  o PersonalType personalType
+  --> Enterprise enterprise optional
+}
+
+event CreateUserEvent {
+  o PersonalType personalType
+  --> Customer customer optional
+  --> Operator operator optional
+  --> Driver driver optional
+  --> Owner owner optional
+}
+
+transaction UpdateAccount {
+  --> Customer customer optional
+  --> Operator operator optional
+  --> Driver driver optional
+  --> Owner owner optional
+  o Double balanceAmount
+  o Double balanceCredit
+  o PersonalType personalType
+}
+
+event UpdateAccountEvent {
+  o String personalId
+  o PersonalType personalType
+  o Double totalBalanceAmount
+  o Double totalBalanceCredit
+}
+
+transaction SetupCluster {
+}

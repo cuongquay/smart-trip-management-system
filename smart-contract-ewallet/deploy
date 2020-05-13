@@ -1,0 +1,154 @@
+#!/bin/bash
+
+. $HOME/.bash_profile_test
+
+TAG_VERSION=${1:-"master"}
+FORCE_CLEAN_BUILD=${2:-"NO"}
+FORCE_BUILD_TARGET=${3:-""}
+
+if [ -z ${VERSION_STRING} ]; then
+    VERSION_STRING="2.0.XX"
+fi
+if [ -z ${TRIPCONTRACT_API_SERVER_URL} ]; then
+    TRIPCONTRACT_API_SERVER_URL='https://apps.tripcontract.io/api/v2'
+fi
+if [ -z ${GOOGLE_PLACE_API_SECRET_KEY} ]; then
+    GOOGLE_PLACE_API_SECRET_KEY='AIzaSyAQEZFZResJbJq_F0PdjEjhMlXUi0Rjlr8'
+fi
+if [ -z ${GOOGLE_ANALYTICS_APP_ID} ]; then
+    GOOGLE_ANALYTICS_APP_ID='UA-64042267-8'
+fi
+
+CURRENT_DIR=$(pwd)
+
+if [ -f version.lock ]; then
+  LAST_BUILD=$(cat version.lock)
+else
+  LAST_BUILD=0
+  echo $LAST_BUILD > version.lock
+fi
+BUILD_TIME=$(date +%s000)
+
+if [ -f $HOME/.fastlane.lock ]; then
+    exit 0;
+fi
+
+increment_version()
+{
+  declare -a part=( ${1//\./ } )
+  declare    new
+  declare -i carry=1
+
+  for (( CNTR=${#part[@]}-1; CNTR>=0; CNTR-=1 )); do
+    len=${#part[CNTR]}
+    new=$((part[CNTR]+carry))
+    [ ${#new} -gt $len ] && carry=1 || carry=0
+    [ $CNTR -gt 0 ] && part[CNTR]=${new: -len} || part[CNTR]=${new}
+  done
+  new="${part[*]}"
+  echo "${new// /.}"
+}
+git checkout .
+NEW_UPDATE=$([ $(git rev-parse HEAD) = $(git ls-remote $(git rev-parse --abbrev-ref @{u} | sed 's/\// /g') | cut -f1) ] && echo NO || echo YES)
+if [ "$NEW_UPDATE" = "YES" ]; then
+    if [ "$FORCE_CLEAN_BUILD" = "YES" ]; then
+        rm -rf node_modules && rm -f yarn.lock && git fetch --tags
+    fi
+    git checkout ${TAG_VERSION} && git pull && /usr/local/bin/yarn
+    cp -rf $HOME/trip-contract-react/iconset/adhoc/ios/* $HOME/trip-contract-react/ios/tripcontract/Images.xcassets/
+    cp -rf $HOME/trip-contract-react/iconset/adhoc/android/* $HOME/trip-contract-react/android/app/src/main/res/
+    
+    BUILD_NUMBER=$(increment_version $LAST_BUILD)
+    echo "Running from: $HOME"
+    echo "NEW BUILD VERSION: ${BUILD_NUMBER}"
+    echo "Running" > $HOME/.fastlane.lock
+    # For All configuration
+    grep -rli 'com.tripcontract.mobile' ios/fastlane/* | xargs -I@ sed -i '' 's/com.tripcontract.mobile/com.tripcontract.apps/g' @
+    grep -rli 'com.tripcontract.mobile' ios/tripcontract/GoogleService-Info.plist | xargs -I@ sed -i '' 's/com.tripcontract.mobile/com.tripcontract.apps/g' @
+    grep -rli 'com.tripcontract.mobile' ios/tripcontract.xcodeproj/* | xargs -I@ sed -i '' 's/com.tripcontract.mobile/com.tripcontract.apps/g' @
+    grep -rli 'com.tripcontract.mobile' ios/tripcontract.xcworkspace/* | xargs -I@ sed -i '' 's/com.tripcontract.mobile/com.tripcontract.apps/g' @
+    grep -rli 'com.tripcontract.mobile' ios/tripcontractTests/* | xargs -I@ sed -i '' 's/com.tripcontract.mobile/com.tripcontract.apps/g' @
+    grep -rli 'com.tripcontract.mobile' android/app/src/main/java/* | xargs -I@ sed -i '' 's/com.tripcontract.mobile/com.tripcontract.apps/g' @
+    grep -rli 'com.tripcontract.mobile' android/app/src/main/AndroidManifest.xml | xargs -I@ sed -i '' 's/com.tripcontract.mobile/com.tripcontract.apps/g' @
+    grep -rli 'com.tripcontract.mobile' android/app/build.gradle | xargs -I@ sed -i '' 's/com.tripcontract.mobile/com.tripcontract.apps/g' @
+    grep -rli 'com.tripcontract.mobile' android/app/google-services.json | xargs -I@ sed -i '' 's/com.tripcontract.mobile/com.tripcontract.apps/g' @
+    grep -rli 'com.tripcontract.mobile' android/fastlane | xargs -I@ sed -i '' 's/com.tripcontract.mobile/com.tripcontract.apps/g' @
+    find . -name ".\!*\!*" -print0 | xargs -0 rm
+    sed -i -e "s/101010/${BUILD_NUMBER}/g" ${CURRENT_DIR}/app.json
+    sed -i -e "s/2.1.0.1.2/${VERSION_STRING}/g" ${CURRENT_DIR}/app.json
+    sed -i -e "s/0000000000000/${BUILD_TIME}/g" ${CURRENT_DIR}/app.json
+    sed -i -e "s/101010/${BUILD_NUMBER}/g" ${CURRENT_DIR}/src/components/custom-drawer-content-v3.js
+    sed -i -e "s/2.1.0.1.2/${VERSION_STRING}/g" ${CURRENT_DIR}/src/components/custom-drawer-content-v3.js
+    sed -i -e "s|TRIPCONTRACT_API_SERVER_URL|${TRIPCONTRACT_API_SERVER_URL}|g" ${CURRENT_DIR}/src/common/api/index.js
+    sed -i -e "s|TRIPCONTRACT_SOCKET_IO_URL|${TRIPCONTRACT_SOCKET_IO_URL}|g" ${CURRENT_DIR}/src/common/api/index.js
+    sed -i -e "s|TRIPCONTRACT_IMAGE_SERVER_URL|${TRIPCONTRACT_IMAGE_SERVER_URL}|g" ${CURRENT_DIR}/src/common/api/index.js
+    sed -i -e "s|GOOGLE_PLACE_API_SECRET_KEY|${GOOGLE_PLACE_API_SECRET_KEY}|g" ${CURRENT_DIR}/src/common/api/api-geolocation.js
+    sed -i -e "s|GOOGLE_ANALYTICS_APP_ID|${GOOGLE_ANALYTICS_APP_ID}|g" ${CURRENT_DIR}/src/common/utils/utils-analytics.js
+    # For iOS configuration
+    sed -i -e "s/101010/${BUILD_NUMBER}/g" ${CURRENT_DIR}/ios/tripcontract/Info.plist
+    sed -i -e "s/2.1.0.1.2/${VERSION_STRING}/g" ${CURRENT_DIR}/ios/tripcontract/Info.plist
+    sed -i -e "s|AWS_ACCESS_KEY_ID|${AWS_ACCESS_KEY_ID}|g" ${CURRENT_DIR}/ios/fastlane/Fastfile
+    sed -i -e "s|AWS_SECRET_ACCESS_KEY|${AWS_SECRET_ACCESS_KEY}|g" ${CURRENT_DIR}/ios/fastlane/Fastfile
+    sed -i -e "s|SLACK_WEBHOOK_KEY|${SLACK_WEBHOOK_KEY}|g" ${CURRENT_DIR}/ios/fastlane/Fastfile
+    # For Android configuration
+    sed -i -e "s/101010/${BUILD_NUMBER}/g" ${CURRENT_DIR}/android/app/build.gradle
+    sed -i -e "s/2.1.0.1.2/${VERSION_STRING}/g" ${CURRENT_DIR}/android/app/build.gradle
+    sed -i -e "s|AWS_ACCESS_KEY_ID|${AWS_ACCESS_KEY_ID}|g" ${CURRENT_DIR}/android/fastlane/Fastfile
+    sed -i -e "s|AWS_SECRET_ACCESS_KEY|${AWS_SECRET_ACCESS_KEY}|g" ${CURRENT_DIR}/android/fastlane/Fastfile
+    sed -i -e "s|SLACK_WEBHOOK_KEY|${SLACK_WEBHOOK_KEY}|g" ${CURRENT_DIR}/android/fastlane/Fastfile
+
+    if [ -f ${CURRENT_DIR}/android/app/src/main/assets/fonts/averta-bold.otf ]; then
+        mv ${CURRENT_DIR}/android/app/src/main/assets/fonts/averta-bold.otf ${CURRENT_DIR}/android/app/src/main/assets/fonts/Averta-Bold.otf
+    fi
+    if [ -f ${CURRENT_DIR}/android/app/src/main/assets/fonts/averta-regular.otf ]; then
+        mv ${CURRENT_DIR}/android/app/src/main/assets/fonts/averta-regular.otf ${CURRENT_DIR}/android/app/src/main/assets/fonts/Averta-Regular.otf
+    fi
+    if [ -f ${CURRENT_DIR}/app.json-e ]; then
+        rm -f ${CURRENT_DIR}/app.json-e
+    fi
+    if [ -f ${CURRENT_DIR}/ios/tripcontract/Info.plist-e ]; then
+        rm -f ${CURRENT_DIR}/ios/tripcontract/Info.plist-e
+    fi
+    if [ -f ${CURRENT_DIR}/android/app/build.gradle-e ]; then
+        rm -f ${CURRENT_DIR}/android/app/build.gradle-e
+    fi
+    if [ -f ${CURRENT_DIR}/android/app/src/main/AndroidManifest.xml-e ]; then
+        rm -f ${CURRENT_DIR}/android/app/src/main/AndroidManifest.xml-e
+    fi
+    if [ -f ${CURRENT_DIR}/src/components/custom-drawer-content-v3.js-e ]; then
+        rm -f ${CURRENT_DIR}/src/components/custom-drawer-content-v3.js-e
+    fi
+    if [ -f ${CURRENT_DIR}/src/common/api/index.js-e ]; then
+        rm -f ${CURRENT_DIR}/src/common/api/index.js-e
+    fi
+    
+    if [ -f ${CURRENT_DIR}/src/common/api/api-geolocation.js-e ]; then
+        rm -f ${CURRENT_DIR}/src/common/api/api-geolocation.js-e
+    fi
+    if [ -f ${CURRENT_DIR}/src/reducers/navigation.js-e ]; then
+        rm -f ${CURRENT_DIR}/src/reducers/navigation.js-e
+    fi
+    if [ -f ${CURRENT_DIR}/src/common/utils/utils-analytics.js-e ]; then
+        rm -f ${CURRENT_DIR}/src/common/utils/utils-analytics.js-e
+    fi
+    if [ -f ${CURRENT_DIR}/ios/fastlane/Fastfile-e ]; then
+        rm -f ${CURRENT_DIR}/ios/fastlane/Fastfile-e
+    fi
+    if [ -f ${CURRENT_DIR}/android/fastlane/Fastfile-e ]; then
+        rm -f ${CURRENT_DIR}/android/fastlane/Fastfile-e
+    fi
+    
+    /usr/local/bin/npm run deploy${FORCE_BUILD_TARGET} > $HOME/logs/output.log 2>&1
+    /usr/local/bin/aws s3 cp $HOME/logs/output.log s3://apps.tripcontract.org/ --acl public-read
+    RESULT=$(cat $HOME/logs/output.log | grep -c "npm ERR")
+    echo "NUMBER OF ERROR BUILDS: ${RESULT}"
+    if [ "$RESULT" = "0" ]; then
+        /usr/local/bin/aws s3 cp app.json s3://apps.tripcontract.org/ --acl public-read
+        echo ${BUILD_NUMBER} > version.lock
+    else
+        echo "BUILD FAILED: Check build logs for more information!"
+    fi
+    rm -f $HOME/.fastlane.lock
+else
+    echo "This repository is up to date. No action is required!"
+fi

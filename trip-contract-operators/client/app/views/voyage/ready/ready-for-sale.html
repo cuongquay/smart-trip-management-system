@@ -1,0 +1,38 @@
+<bc-man-sidebar></bc-man-sidebar>
+
+<div class="bc-man-dashboard">
+  <h1>
+    Welcome Bernard!
+  </h1>
+
+  <h5>Setup A Voyages</h5>
+  <div class="bottom-holder">
+    <div class="card card-secondary card-manufacture">
+      <div class="card-block">
+            <h5 class="card-title">Voyage Information</h5>
+            <p>Your Trip is ready for sale now!</p>
+    </div>
+      <div class="btn-groups" style="padding: 20px 10px">
+        <a href="/operation/{{operation.nextId()}}#{{operation.voyageId}}">
+          <button class="start-manufacture btn btn-primary" ng-click="nextSetup()">{{ operation.name() }}</button>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <div class="bc-man-overview">
+    <h5>
+      Operating Status
+      <button class="btn btn-secondary">Voyages</button>
+      <button class="btn fade">Vehicle Assign</button>
+      <button class="btn fade">Driver Assign</button>
+    </h5>
+    <div class="graphs">
+      <img src="/tripcontract/assets/images/route.svg" alt="Trip Route Details">
+      <img src="/tripcontract/assets/images/drivers.svg" alt="Available Drivers">
+      <img src="/tripcontract/assets/images/vehicles.svg" alt="Available Vehicles">
+    </div>
+  </div>
+</div>
+</div>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BugsnagAPIKey</key>
+	<string>00000000000000000000000000000000</string>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>Trip|Contract</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>2.1.0.1.2</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>101010</string>
+	<key>CodePushDeploymentKey</key>
+	<string>00000000000000000000000000000000</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>localhost</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSExceptionMinimumTLSVersion</key>
+				<string>TLSv1.1</string>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
+		</dict>
+	</dict>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Chúng tôi cần bạn cho phép truy cập vào chức năng âm nhạc để đem đến cho bạn trải nghiệm thú vị hơn. (We nee your permission to use Apple music for user experience enhancement).</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Chúng tôi cần bạn cho phép truy cập vào chức năng bluetooth để nâng cao trải nghiệm thanh toán. (We need your permission to open bluetooth for user experience enhancement).</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Chúng tôi cần bạn cho phép truy cập vào chức năng xem lịch để nhắc nhở bạn tốt hơn. (We need your permission to use calendar for reminder purpose).</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Chúng tôi cần bạn cho phép truy cập vào Camera để quét mã QR. (We need your permission to open camera for QR code scanning).</string>
+	<key>NSContactsUsageDescription</key>
+	<string>Chúng tôi cần bạn cho phép truy cập vào danh bạ để lấy số điện thoại người nhận tiền. (We need your permission to use contacts for money transfering).</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Chúng tôi cần bạn cho phép truy cập vào chức năng định vị để tìm kiếm điểm giao dịch gần nhất. (We need your permission to use location service for nearby location feature).</string>
+	<key>NSMotionUsageDescription</key>
+	<string>Chúng tôi cần bạn cho phép truy cập vào chức năng dò chuyển động để nâng cao trải nghiệm người dùng. (We need your permission to use motion detection for user experience enhancement).</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Chúng tôi cần bạn cho phép truy cập vào thư viện ảnh để sử dụng làm ảnh đại diện. (We need your permission to open photo gallery for avatar usage).</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Chúng tôi cần bạn cho phép truy cập vào chức năng nhận diện giọng nói để giúp bạn xử lý yêu cầu nhanh hơn. (We need your permission to use speech to speedup your orders).</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Averta-Bold.otf</string>
+		<string>Averta-Regular.otf</string>
+		<string>Entypo.ttf</string>
+		<string>EvilIcons.ttf</string>
+		<string>Feather.ttf</string>
+		<string>FontAwesome.ttf</string>
+		<string>Foundation.ttf</string>
+		<string>Ionicons.ttf</string>
+		<string>MaterialCommunityIcons.ttf</string>
+		<string>MaterialIcons.ttf</string>
+		<string>Octicons.ttf</string>
+		<string>SimpleLineIcons.ttf</string>
+		<string>Zocial.ttf</string>
+		<string>Averta-Semibold.ttf</string>
+		<string>averta-bold.otf</string>
+		<string>averta-regular.otf</string>
+		<string>ic_contact.ttf</string>
+		<string>Roboto_medium.ttf</string>
+		<string>Roboto.ttf</string>
+		<string>rubicon-icon-font.ttf</string>
+		<string>Averta-SemiBold.ttf</string>
+	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+	</array>
+	<key>UIRequiresFullScreen</key>
+	<true/>
+	<key>UIStatusBarHidden</key>
+	<true/>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+</dict>
+</plist>

@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "start": "sh network-start.sh",
+    "deploy": "sh network-deploy.sh",
+    "server": "sh network-rest-server.sh",
+    "playground": "composer-playground",
+    "stop": "sh network-stop.sh"
+  }
+}

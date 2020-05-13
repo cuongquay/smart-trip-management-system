@@ -1,0 +1,6 @@
+{
+  "name": "history",
+  "private": true,
+  "license": "MIT",
+  "main": "index.js"
+}

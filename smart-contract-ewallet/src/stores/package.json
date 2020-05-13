@@ -1,0 +1,6 @@
+{
+  "name": "stores",
+  "private": true,
+  "license": "MIT",
+  "main": "index.js"
+}

@@ -1,0 +1,52 @@
+{
+    "oauth2": {
+        "provider": "koa-oauth",
+        "module": "../../../passport-koa-oauth",
+        "clientID": "443a43d6-227b-4a77-a444-c9e2549767d1",
+        "clientSecret": "3y5QwtLxajYeACqzAMKBWjSqV3T8Rp5s",
+        "scope": ["user_info:read"],
+        "grantType": "authorization_code",
+        "authPath": "/auth/oauth2",
+        "callbackPath": "/auth/oauth2/callback",  
+        "callbackURL": "http://localhost:3000/auth/oauth2/callback",
+        "successRedirect": "/",
+        "failureRedirect": "/",
+        "server": {
+            "authorizationURL": "http://localhost:3002/oauth/authorize",
+            "tokenURL": "http://localhost:3002/oauth/token",
+            "userProfileURL": "http://localhost:3002/api/user/profile"
+        }
+    },
+    "github": {
+        "provider": "github",
+        "module": "passport-github",
+        "clientID": "82f1843475991ae5f06d",
+        "clientSecret": "e0c72ea7d87810d78d2a219496dd1756b598e9eb",
+        "authPath": "/auth/github",
+        "callbackURL": "/auth/github/callback",
+        "successRedirect": "/",
+        "failureRedirect": "/"
+    },
+    "facebook": {
+        "provider": "facebook",
+        "module": "passport-facebook",
+        "clientID": "165843117434706",
+        "clientSecret": "741e1a5a274e681dac68d0baeabcf13b",
+        "callbackURL": "http://localhost:3000/auth/facebook/callback",
+        "authPath": "/auth/facebook",
+        "callbackPath": "/auth/facebook/callback",
+        "successRedirect": "/auth/account",
+        "scope": ["email"]
+    },
+    "google": {
+        "provider": "google",
+        "module": "passport-google-oauth2",
+        "clientID": "868332228182-isom65t5e88mcrbb3qqfo22a6ghpmke4.apps.googleusercontent.com",
+        "clientSecret": "CN54ZWpKk-bk3bgkPdxTHc_J",
+        "authPath": "/auth/google",
+        "callbackURL": "/auth/google/callback",
+        "scope": "https://www.googleapis.com/auth/plus.login",
+        "successRedirect": "/",
+        "failureRedirect": "/"
+    }
+}

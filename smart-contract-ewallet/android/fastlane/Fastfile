@@ -1,0 +1,130 @@
+# Customize this file, documentation can be found here:
+# https://docs.fastlane.tools/actions/
+# All available actions: https://docs.fastlane.tools/actions
+# can also be listed using the `fastlane actions` command
+
+# Environment variables:
+
+ENV["S3_ACCESS_KEY"] = "AWS_ACCESS_KEY_ID"
+ENV["S3_SECRET_ACCESS_KEY"] = "AWS_SECRET_ACCESS_KEY"
+ENV["S3_BUCKET"] = "apps.tripcontract.org"
+ENV["S3_REGION"] = "ap-northeast-1"
+ENV["S3_ENDPOINT"] = "https://s3-ap-northeast-1.amazonaws.com/"
+
+# Change the syntax highlighting to Ruby
+# All lines starting with a # are ignored when running `fastlane`
+
+# If you want to automatically update fastlane if a new version is available:
+# update_fastlane
+
+# This is the minimum version number required.
+# Update this, if you use features of a newer version
+fastlane_version "2.68.2"
+
+default_platform :android
+
+platform :android do
+  before_all do
+    # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
+  end
+
+  desc "Runs all the tests"
+  lane :test do
+    gradle(task: "test")
+  end
+
+  desc "Submit a new Beta Build to Crashlytics Beta"
+  lane :beta do
+    gradle(task: "assembleRelease")
+    crashlytics
+
+    # sh "your_script.sh"
+    # You can also use other beta testing services here
+  end
+
+  desc "Release a new version to the Google Play"
+  lane :release do
+    gradle(task: "assembleRelease")
+    #upload_to_play_store
+    # Release to S3
+    aws_s3(
+      access_key: ENV["S3_ACCESS_KEY"],
+      secret_access_key: ENV["S3_SECRET_ACCESS_KEY"],
+      bucket: ENV["S3_BUCKET"],
+      region: ENV["S3_REGION"],
+      endpoint: ENV["S3_ENDPOINT"],
+      app_directory: "android-release/",
+      apk: "app/build/outputs/apk/release/app-release.apk",
+    )
+  end
+
+  desc "Build and deploy to Amazon S3"
+  lane :build_s3 do
+    gradle(task: "assembleRelease")
+    # Deploy to S3
+    aws_s3(
+      access_key: ENV["S3_ACCESS_KEY"],
+      secret_access_key: ENV["S3_SECRET_ACCESS_KEY"],
+      bucket: ENV["S3_BUCKET"],
+      region: ENV["S3_REGION"],
+      endpoint: ENV["S3_ENDPOINT"],
+      app_directory: "android/",
+      apk: "app/build/outputs/apk/release/app-release.apk",
+    )
+  end
+
+  after_all do |lane|
+    # This block is called, only if the executed lane was successful
+    slack(
+      slack_url: "https://hooks.slack.com/services/SLACK_WEBHOOK_KEY",
+      message: "A new build was successfully published on the https://apps.tripcontract.org",
+      channel: "#trip|contract-builds",
+      success: true,
+      payload: {  # Optional, lets you specify any number of your own Slack attachments.
+        "Build Date" => Time.new.to_s,
+        "Built by" => "Trip|Contract's Mac Mini",
+      },
+      default_payloads: [:git_branch, :git_author, :last_git_commit_message, :last_git_commit_hash], # Optional, lets you specify a whitelist of default payloads to include. Pass an empty array to suppress all the default payloads.
+            # Don't add this key, or pass nil, if you want all the default payloads. The available default payloads are: `lane`, `test_result`, `git_branch`, `git_author`, `last_git_commit_message`, `last_git_commit_hash`.
+      attachment_properties: { # Optional, lets you specify any other properties available for attachments in the slack API (see https://api.slack.com/docs/attachments).
+          # This hash is deep merged with the existing properties set using the other properties above. This allows your own fields properties to be appended to the existing fields that were created using the `payload` property for instance.
+        thumb_url: "https://tripcontract.com/home/images/logo-opp_2.png",
+        fields: [{
+          title: "Trip|Contract CI/CD",
+          value: "https://apps.tripcontract.org",
+          short: true
+        }]
+      }
+    )
+  end
+
+  error do |lane, exception|
+    slack(
+      slack_url: "https://hooks.slack.com/services/SLACK_WEBHOOK_KEY",
+      message: exception.message,
+      channel: "#trip|contract-builds",
+      success: false,
+      payload: {  # Optional, lets you specify any number of your own Slack attachments.
+        "Build Date" => Time.new.to_s,
+        "Built by" => "Trip|Contract's Mac Mini",
+      },
+      default_payloads: [:git_branch, :git_author, :last_git_commit_message], # Optional, lets you specify a whitelist of default payloads to include. Pass an empty array to suppress all the default payloads.
+            # Don't add this key, or pass nil, if you want all the default payloads. The available default payloads are: `lane`, `test_result`, `git_branch`, `git_author`, `last_git_commit_message`, `last_git_commit_hash`.
+      attachment_properties: { # Optional, lets you specify any other properties available for attachments in the slack API (see https://api.slack.com/docs/attachments).
+          # This hash is deep merged with the existing properties set using the other properties above. This allows your own fields properties to be appended to the existing fields that were created using the `payload` property for instance.
+        thumb_url: "https://tripcontract.com/home/images/logo-opp_2.png",
+        fields: [{
+          title: "Trip|Contract CI/CD",
+          value: "http://apps.tripcontract.org",
+          short: true
+        }]
+      }
+    )
+  end
+end
+
+# More information about multiple platforms in fastlane: https://docs.fastlane.tools/advanced/#control-configuration-by-lane-and-by-platform
+# All available actions: https://docs.fastlane.tools/actions
+
+# fastlane reports which actions are used. No personal data is recorded.
+# Learn more at https://docs.fastlane.tools/#metrics

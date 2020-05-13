@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="736px" height="334px" viewBox="0 0 736 334" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>Route Details</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="676" height="274" rx="5"></rect>
+        <filter x="-6.7%" y="-16.4%" width="113.3%" height="132.8%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="15" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M0,15 C0,6.71572875 6.71115413,0 14.9924668,0 L76,0 L76,30 L14.9924668,30 C6.71235604,30 0,23.2860927 0,15 L0,15 Z" id="path-4"></path>
+    </defs>
+    <g id="Manufacturer-Scratch-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Graph-1" transform="translate(30.000000, 30.000000)">
+            <g id="Line-Copy-5-+-Line-Copy-6-+-Line-Copy-7-+-Line-Copy-8-+-Line-Copy-9-+-Stroke-3-Copy-+-Stroke-3-Copy-Mask">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="Mask">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-1"></use>
+                    <use fill="#343640" fill-rule="evenodd" xlink:href="#path-1"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

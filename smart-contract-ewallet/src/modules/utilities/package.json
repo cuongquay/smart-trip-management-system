@@ -1,0 +1,6 @@
+{
+  "name": "utilities",
+  "private": true,
+  "license": "MIT",
+  "main": "index.js"
+}

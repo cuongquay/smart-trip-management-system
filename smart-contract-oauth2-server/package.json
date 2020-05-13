@@ -1,0 +1,28 @@
+{
+  "name": "oatuh2-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "OAuth2",
+    "Node",
+    "Koa"
+  ],
+  "author": "CuongQuay",
+  "license": "MIT",
+  "dependencies": {
+    "consolidate": "^0.14.5",
+    "koa": "^2.3.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-router": "^7.2.1",
+    "koa-session": "^5.5.0",
+    "koa-static": "^4.0.2",
+    "lodash": "^4.17.4",
+    "mongoose": "^5.0.16",
+    "oauth2-server": "^3.0.0",
+    "request": "^2.81.0"
+  }
+}

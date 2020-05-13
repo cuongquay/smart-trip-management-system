@@ -1,0 +1,18 @@
+'use strict';
+
+var utils = require('../utils/writer.js');
+{{#operations}}
+var {{classname}} = require('../{{serviceFolder}}/{{classname}}');
+{{#operation}}
+
+module.exports.{{nickname}} = ((req, res, next) => {
+  {{classname}}.{{nickname}}(req, res)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+})
+{{/operation}}
+{{/operations}}

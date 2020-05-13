@@ -1,0 +1,6 @@
+{
+  "name": "otpjs",
+  "private": true,
+  "license": "MIT",
+  "main": "index.js"
+}

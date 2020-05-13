@@ -1,0 +1,52 @@
+version: '2.1'
+services:
+  smart-contract-oauth2-server:
+    build:
+      context: ./smart-contract-oauth2-server/
+    depends_on:
+      - trip-contract-mongodb
+    environment:
+      - LOG_LEVEL=debug
+      - MONGODB_URI=mongodb://trip-contract-mongodb/oauth2
+      - REDIRECT_URI_DEMO_APP=http://localhost:3000/auth/oauth2/callback
+    ports:
+     - 3002:3000
+    restart: always
+    networks:
+      - composer_network
+  smart-contract-rest-server:
+    build:
+      context: ./smart-contract-rest-server/
+    environment:
+      - LOG_LEVEL=debug
+      - HYPERLEDGER_HOST=${DOCKER_HOST_IP}
+      - MONGODB_HOST=trip-contract-mongodb
+      - COMPOSER_CARD=admin@trip-contract-network
+      - COMPOSER_NAMESPACES=never
+      #- COMPOSER_AUTHENTICATION=true
+      #- COMPOSER_MULTIUSER=true
+      - COMPOSER_AUTHENTICATION=false
+      - COMPOSER_MULTIUSER=false
+      - COMPOSER_WEBSOCKETS=true
+      - AUTHORIZATION_URL=http://localhost:3002/oauth/authorize
+      - AUTHORIZATION_TOKEN_URL=http://smart-contract-oauth2-server:3000/oauth/token
+      - USER_PROFILE_URL=http://smart-contract-oauth2-server:3000/api/user/profile
+    volumes:
+      - ~/.composer:/home/container/.composer
+    ports:
+     - 3000:3000
+    restart: always
+    depends_on:
+      - trip-contract-mongodb
+    networks:
+      - composer_network
+  trip-contract-mongodb:
+    image: mongo
+    ports:
+    - 27017:27017
+    networks:
+      - composer_network
+networks:
+  composer_network:
+    external:
+      name: composer_default

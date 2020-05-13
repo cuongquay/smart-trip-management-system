@@ -1,0 +1,514 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+rule AllCustomerCanReadBookableVoyageAsset {
+ 	description: "Allow Customers to read voyage properties"
+  participant(p): "org.tripcontract.network.Customer"
+  operation: READ
+  resource(o): "org.tripcontract.network.Voyage"
+  condition: (o.voyageStatus !== 'CANCELLED' && o.voyageStatus !== 'FINISHED')
+  action: ALLOW
+}
+
+rule AllOperatorCanReadAvaiableVehicleAsset {
+  description: "Allow Operators to create, update and view vehicle"
+  participant(p): "org.tripcontract.network.Operator"
+  operation: READ
+  resource(o): "org.tripcontract.network.Vehicle"
+  condition: (o.vehicleStatus === 'AVAILABLE')
+  action: ALLOW
+}
+
+rule AllOwnerCreateReadVehicleAsset {
+  description: "Allow Owners to create, update and view vehicle"
+  participant(p): "org.tripcontract.network.Owner"
+  operation: CREATE, READ
+  resource(o): "org.tripcontract.network.Vehicle"
+  condition: (o.owner.getIdentifier() == p.getIdentifier())
+  action: ALLOW
+}
+
+rule AllOperatorCreateReadDriverAsset {
+  description: "Allow Operators to create, update and view drivers"
+  participant(p): "org.tripcontract.network.Operator"
+  operation: CREATE, READ
+  resource(o): "org.tripcontract.network.Driver"
+  condition: (o.drivingLicense !== null || !o.drivingLicense)
+  action: ALLOW
+}
+
+rule AllOperatorCanCreateDriverOnTransaction {
+  description: "Allow Operators to create only drivers"
+  participant(p): "org.tripcontract.network.Operator"
+  operation: CREATE
+  resource(f): "org.tripcontract.network.CreateUser"
+  condition: (f.personalType === 'Driver')
+  action: ALLOW
+}
+
+rule AllOperatorCanCreateDriverAccountOnTransaction {
+  description: "Allow Operators to create only account"
+  participant(p): "org.tripcontract.network.Operator"
+  operation: CREATE
+  resource(o): "org.tripcontract.network.Account"
+  transaction(f): "org.tripcontract.network.CreateUser"
+  condition: (f.personalType === 'Driver')
+  action: ALLOW
+}
+
+rule OperatorCanUpdateVehicleAsset {
+  description: "Allow Operators to update created vehicle"
+  participant(p): "org.tripcontract.network.Operator"
+  operation: UPDATE
+  resource(o): "org.tripcontract.network.Vehicle"
+  condition: (o.operator.getIdentifier() == p.getIdentifier())
+  action: ALLOW
+}
+
+rule OperatorCreateReadUpdateVoyageAsset {
+  description: "Allow Operators to create, update and view voyages"
+  participant(p): "org.tripcontract.network.Operator"
+  operation: CREATE, READ, UPDATE
+  resource(o): "org.tripcontract.network.Voyage"
+  condition: (o.operator.getIdentifier() == p.getIdentifier())
+  action: ALLOW
+}
+
+rule OperatorCanOfferVoyageOnTransaction {
+ 	description: "Allow Operators to offer a voyage"
+  participant(p): "org.tripcontract.network.Operator"
+  operation: CREATE, READ
+  resource(f): "org.tripcontract.network.OfferVoyage"
+  condition: (f.operator.getIdentifier() == p.getIdentifier())
+  action: ALLOW
+}
+
+rule OperatorCanUpdateVoyageOnTransaction {
+ 	description: "Allow Operators to update a voyage"
+  participant(p): "org.tripcontract.network.Operator"
+  operation: CREATE, READ
+  resource(f): "org.tripcontract.network.UpdateVoyage"
+  condition: (f.voyage.operator.getIdentifier() == p.getIdentifier())
+  action: ALLOW
+}
+
+rule OperatorCanUpdateVoyageStatusTransaction {
+  description: "Allow Operators to view and update their own voyageOrders"
+  participant(p): "org.tripcontract.network.Operator"
+  operation: CREATE, READ
+  resource(f): "org.tripcontract.network.UpdateVoyageStatus"
+  condition: (f.voyage.operator.getIdentifier() == p.getIdentifier())
+  action: ALLOW
+}
+
+rule OperatorCanUpdateVoyageStatusOnTransaction {
+  description: "Allow Operators to view and update their own voyageOrders"
+  participant(p): "org.tripcontract.network.Operator"
+  operation: UPDATE, READ
+  resource(o): "org.tripcontract.network.Voyage"
+  transaction(f): "org.tripcontract.network.UpdateVoyageStatus"
+  condition: (o.voyageStatus == "CREATED" && (f.voyageStatus == "VIN_ASSIGNED" || f.voyageStatus == "DRV_ASSIGNED"))
+  action: ALLOW
+}
+
+rule OperatorCanReadCustomerVoyageOrderAsset {
+ 	description: "Allow Operators can read customer voyageOrders"
+  participant(p): "org.tripcontract.network.Operator"
+  operation: READ
+  resource(o): "org.tripcontract.network.VoyageOrder"
+  condition: (o.voyage.operator.getIdentifier() == p.getIdentifier())
+  action: ALLOW
+}
+
+rule OperatorCanRejectOrConfirmUpdateVoyageOrderOnTransaction {
+ 	description: "Allow Operators can update customer voyageOrders"
+  participant(p): "org.tripcontract.network.Operator"
+  operation: READ, UPDATE
+  resource(o): "org.tripcontract.network.VoyageOrder"
+  transaction(f): "org.tripcontract.network.UpdateVoyageOrderStatus"
+  condition: (o.voyage.operator.getIdentifier() == p.getIdentifier()
+    && (f.voyageOrderStatus === 'REJECTED' || f.voyageOrderStatus === 'CONFIRMED'))
+  action: ALLOW
+}
+
+rule OperatorCanRejectOrConfirmUpdateVoyageOrderStatusOnTransaction {
+ 	description: "Allow Operators can update voyageOrder status when cancelled or rejected"
+  participant(p): "org.tripcontract.network.Operator"
+  operation: CREATE
+  resource(o): "org.tripcontract.network.UpdateVoyageOrderStatus"
+  condition: (o.operator.getIdentifier() == p.getIdentifier()
+    && (o.voyageOrderStatus === 'REJECTED' || o.voyageOrderStatus === 'CONFIRMED'))
+  action: ALLOW
+}
+
+rule OperatorCanReadCustomerOnUpdateVoyageOrderStatusTransaction {
+ 	description: "Allow Operators can update voyageOrder status when cancelled or rejected"
+  participant(p): "org.tripcontract.network.Operator"
+  operation: READ
+  resource(o): "org.tripcontract.network.Customer"
+  transaction(f): "org.tripcontract.network.UpdateVoyageOrderStatus"
+  condition: (f.operator.getIdentifier() == p.getIdentifier()
+    && (f.voyageOrderStatus === 'REJECTED' || f.voyageOrderStatus === 'CONFIRMED'))
+  action: ALLOW
+}
+
+rule OperatorCanUpdateAccountOnUpdateVoyageOrderStatusTransaction {
+ 	description: "Allow Operators can update their account balances when cancelled or rejected"
+  participant(p): "org.tripcontract.network.Operator"
+  operation: READ, UPDATE
+  resource(o): "org.tripcontract.network.Account"
+  transaction(f): "org.tripcontract.network.UpdateVoyageOrderStatus"
+  condition: (f.operator.getIdentifier() == p.getIdentifier()
+    && o.getIdentifier() == f.voyageOrder.customer.account.getIdentifier()
+    && (f.voyageOrderStatus === 'REJECTED' || f.voyageOrderStatus === 'CONFIRMED'))
+  action: ALLOW
+}
+
+rule OperatorCanReadAccountBalanceAsset {
+ 	description: "Allow Operators can read their account balances"
+  participant(p): "org.tripcontract.network.Operator"
+  operation: READ
+  resource(o): "org.tripcontract.network.Account"
+  condition: (o.getIdentifier() == p.account.getIdentifier())
+  action: ALLOW
+}
+
+rule CustomerCanCreateVoyageOrderTransaction {
+ 	description: "Allow Customers to create and view voyageOrders"
+  participant(p): "org.tripcontract.network.Customer"
+  operation: CREATE, READ
+  resource(o): "org.tripcontract.network.VoyageOrder"
+  condition: (o.customer.getIdentifier() == p.getIdentifier())
+  action: ALLOW
+}
+
+rule CustomerCanBookVoyageTransaction {
+ 	description: "Allow Customers to place voyageOrders and view they've done this"
+  participant(p): "org.tripcontract.network.Customer"
+  operation: CREATE, READ
+  resource(f): "org.tripcontract.network.BookVoyage"
+  condition: (f.customer.getIdentifier() == p.getIdentifier())
+  action: ALLOW
+}
+
+rule CustomerCanCreateUpdateAccountTransaction {
+ 	description: "Allow Customers can update their account balances"
+  participant(p): "org.tripcontract.network.Customer"
+  operation: CREATE, READ
+  resource(f): "org.tripcontract.network.UpdateAccount"
+  condition: (f.customer.getIdentifier() == p.getIdentifier() && f.personalType === 'Customer')
+  action: ALLOW
+}
+
+rule CustomerCanCreateUpdateAccountOnTransaction {
+ 	description: "Allow Customers can update their account balances"
+  participant(p): "org.tripcontract.network.Customer"
+  operation: UPDATE
+  resource(o): "org.tripcontract.network.Account"
+  transaction(f): "org.tripcontract.network.UpdateAccount"
+  condition: (f.customer.getIdentifier() == p.getIdentifier() && f.personalType === 'Customer' 
+    && o.getIdentifier() == p.account.getIdentifier())
+  action: ALLOW
+}
+
+rule CustomerCanReadAccountBalanceAsset {
+ 	description: "Allow Customers can read their account balances"
+  participant(p): "org.tripcontract.network.Customer"
+  operation: READ
+  resource(o): "org.tripcontract.network.Account"
+  condition: (o.getIdentifier() == p.account.getIdentifier())
+  action: ALLOW
+}
+
+rule CustomerCanUpdateAccountOnBookVoyageTransaction {
+ 	description: "Allow Customers can update their account balances when placed voyageOrder"
+  participant(p): "org.tripcontract.network.Customer"
+  operation: UPDATE
+  resource(o): "org.tripcontract.network.Account"
+  transaction(f): "org.tripcontract.network.BookVoyage"
+  condition: (f.customer.getIdentifier() == p.getIdentifier()
+    && o.getIdentifier() == p.account.getIdentifier())
+  action: ALLOW
+}
+
+rule CustomerCanUpdateAccountOnUpdateVoyageOrderStatusTransaction {
+ 	description: "Allow Customers can update their account balances when cancelled or rejected"
+  participant(p): "org.tripcontract.network.Customer"
+  operation: UPDATE
+  resource(o): "org.tripcontract.network.Account"
+  transaction(f): "org.tripcontract.network.UpdateVoyageOrderStatus"
+  condition: (f.voyageOrder.customer.getIdentifier() == p.getIdentifier()
+    && o.getIdentifier() == p.account.getIdentifier())
+  action: ALLOW
+}
+
+rule CustomerCanCreateUpdateVoyageOrderTransaction {
+ 	description: "Allow Customers to update voyageOrders and view they've done this"
+  participant(p): "org.tripcontract.network.Customer"
+  operation: CREATE, READ
+  resource(f): "org.tripcontract.network.UpdateVoyageOrder"
+  condition: (f.voyageOrder.customer.getIdentifier() == p.getIdentifier())
+  action: ALLOW
+}
+
+rule CustomerCanCreateUpdateVoyageOrderStatusTransaction {
+ 	description: "Allow Customers to cancel voyageOrders"
+  participant(p): "org.tripcontract.network.Customer"
+  operation: CREATE, READ
+  resource(f): "org.tripcontract.network.UpdateVoyageOrderStatus"
+  condition: (f.voyageOrder.customer.getIdentifier() == p.getIdentifier() && f.voyageOrderStatus == "CANCELLED")
+  action: ALLOW
+}
+
+rule CustomerCanUpdateVoyageOrderStatusOnTransaction {
+ 	description: "Allow Customers to cancel voyageOrders"
+  participant(p): "org.tripcontract.network.Customer"
+  operation: UPDATE
+  resource(o): "org.tripcontract.network.VoyageOrder"
+  transaction(f): "org.tripcontract.network.UpdateVoyageOrderStatus"
+  condition: (f.voyageOrder.customer.getIdentifier() == p.getIdentifier() && f.voyageOrderStatus == "CANCELLED")
+  action: ALLOW
+}
+
+rule CustomerCanUpdateVoyageOrderOnTransaction {
+ 	description: "Allow Customers to update voyageOrders"
+  participant(p): "org.tripcontract.network.Customer"
+  operation: UPDATE
+  resource(o): "org.tripcontract.network.VoyageOrder"
+  transaction(f): "org.tripcontract.network.UpdateVoyageOrder"
+  condition: (f.voyageOrder.customer.getIdentifier() == p.getIdentifier() && 
+    (o.voyageOrderStatus == "PLACED" || o.voyageOrderStatus == "CONFIRMED"))
+  action: ALLOW
+}
+
+rule CustomerCanReadUpdateVehicleOnTransaction {
+ 	description: "Allow Customers to update vehicle seats"
+  participant(p): "org.tripcontract.network.Customer"
+  operation: READ, UPDATE
+  resource(o): "org.tripcontract.network.Vehicle"
+  transaction(f): "org.tripcontract.network.UpdateVoyageOrder"
+  condition: (f.voyageOrder.customer.getIdentifier() == p.getIdentifier() && 
+    (f.voyageOrder.voyage.voyageStatus == "CREATED" || f.voyageOrder.voyage.voyageStatus == "ACTIVATED"
+     || f.voyageOrder.voyage.voyageStatus == "VIN_ASSIGNED" || f.voyageOrder.voyage.voyageStatus == "DRV_ASSIGNED"))
+  action: ALLOW
+}
+
+rule DriverCanReadVoyageOnTransaction {
+ 	description: "Allow Drivers to check-in/out voyageOrders"
+  participant(p): "org.tripcontract.network.Driver"
+  operation: READ
+  resource(o): "org.tripcontract.network.Voyage"
+  transaction(f): "org.tripcontract.network.CheckInCheckOutVoyageOrder"
+  condition: (f.driver.getIdentifier() == p.getIdentifier() && 
+    (f.voyageOrderStatus == "CHECKED_IN" || f.voyageOrderStatus == "CHECKED_OUT"))
+  action: ALLOW
+}
+
+rule DriverCanReadUpdateVehicleOnTransaction {
+ 	description: "Allow Drivers to check-in/out voyageOrders"
+  participant(p): "org.tripcontract.network.Driver"
+  operation: READ, UPDATE
+  resource(o): "org.tripcontract.network.Vehicle"
+  transaction(f): "org.tripcontract.network.CheckInCheckOutVoyageOrder"
+  condition: (f.driver.getIdentifier() == p.getIdentifier() && 
+    (f.voyageOrderStatus == "CHECKED_IN" || f.voyageOrderStatus == "CHECKED_OUT"))
+  action: ALLOW
+}
+
+rule DriverCanReadCustomerOnTransaction {
+ 	description: "Allow Drivers to check-in/out voyageOrders"
+  participant(p): "org.tripcontract.network.Driver"
+  operation: READ
+  resource(o): "org.tripcontract.network.Customer"
+  transaction(f): "org.tripcontract.network.CheckInCheckOutVoyageOrder"
+  condition: (f.driver.getIdentifier() == p.getIdentifier() && 
+    (f.voyageOrderStatus == "CHECKED_IN" || f.voyageOrderStatus == "CHECKED_OUT"))
+  action: ALLOW
+}
+
+rule DriverCanReadOperatorOnTransaction {
+ 	description: "Allow Drivers to check-in/out voyageOrders"
+  participant(p): "org.tripcontract.network.Driver"
+  operation: READ
+  resource(o): "org.tripcontract.network.Operator"
+  transaction(f): "org.tripcontract.network.CheckInCheckOutVoyageOrder"
+  condition: (f.driver.getIdentifier() == p.getIdentifier() && 
+    (f.voyageOrderStatus == "CHECKED_IN" || f.voyageOrderStatus == "CHECKED_OUT"))
+  action: ALLOW
+}
+
+rule DriverCanReadEnterpriseOnTransaction {
+ 	description: "Allow Drivers to check-in/out voyageOrders"
+  participant(p): "org.tripcontract.network.Driver"
+  operation: READ
+  resource(o): "org.tripcontract.network.Enterprise"
+  transaction(f): "org.tripcontract.network.CheckInCheckOutVoyageOrder"
+  condition: (f.driver.getIdentifier() == p.getIdentifier() && 
+    (f.voyageOrderStatus == "CHECKED_IN" || f.voyageOrderStatus == "CHECKED_OUT"))
+  action: ALLOW
+}
+
+rule DriverCanReadOwnerOnTransaction {
+ 	description: "Allow Drivers to check-in/out voyageOrders"
+  participant(p): "org.tripcontract.network.Driver"
+  operation: READ
+  resource(o): "org.tripcontract.network.Owner"
+  transaction(f): "org.tripcontract.network.CheckInCheckOutVoyageOrder"
+  condition: (f.driver.getIdentifier() == p.getIdentifier() && 
+    (f.voyageOrderStatus == "CHECKED_IN" || f.voyageOrderStatus == "CHECKED_OUT"))
+  action: ALLOW
+}
+
+rule DriverCanReadVehicleOnTransaction {
+ 	description: "Allow Drivers to check-in/out voyageOrders"
+  participant(p): "org.tripcontract.network.Driver"
+  operation: READ
+  resource(o): "org.tripcontract.network.Vehicle"
+  transaction(f): "org.tripcontract.network.CheckInCheckOutVoyageOrder"
+  condition: (f.driver.getIdentifier() == p.getIdentifier() && 
+    (f.voyageOrderStatus == "CHECKED_IN" || f.voyageOrderStatus == "CHECKED_OUT"))
+  action: ALLOW
+}
+
+rule DriverCanReadUpdateAccountOnTransaction {
+ 	description: "Allow Drivers to check-in/out voyageOrders"
+  participant(p): "org.tripcontract.network.Driver"
+  operation: READ, UPDATE
+  resource(o): "org.tripcontract.network.Account"
+  transaction(f): "org.tripcontract.network.CheckInCheckOutVoyageOrder"
+  condition: (f.driver.getIdentifier() == p.getIdentifier() && 
+    (f.voyageOrderStatus == "CHECKED_IN" || f.voyageOrderStatus == "CHECKED_OUT"))
+  action: ALLOW
+}
+
+rule DriverCanReadAccountBalanceAsset {
+ 	description: "Allow Drivers can read their account balances"
+  participant(p): "org.tripcontract.network.Driver"
+  operation: READ
+  resource(o): "org.tripcontract.network.Account"
+  condition: (o.getIdentifier() == p.account.getIdentifier())
+  action: ALLOW
+}
+
+rule DriverCreateUpdateVoyageOrderTransaction {
+ 	description: "Allow Drivers to check-in/out voyageOrders"
+  participant(p): "org.tripcontract.network.Driver"
+  operation: CREATE, READ
+  resource(f): "org.tripcontract.network.CheckInCheckOutVoyageOrder"
+  condition: (f.driver.getIdentifier() == p.getIdentifier() && 
+    (f.voyageOrderStatus == "CHECKED_IN"  || f.voyageOrderStatus == "CHECKED_OUT"))
+  action: ALLOW
+}
+
+rule DriverCheckInOutVoyageOrderTransaction {
+ 	description: "Allow Drivers to check-in/out voyageOrders"
+  participant(p): "org.tripcontract.network.Driver"
+  operation: UPDATE, READ
+  resource(o): "org.tripcontract.network.VoyageOrder"
+  transaction(f): "org.tripcontract.network.CheckInCheckOutVoyageOrder"
+  condition: (f.driver.getIdentifier() == p.getIdentifier() && 
+    (f.voyageOrderStatus == "CHECKED_IN" || f.voyageOrderStatus == "CHECKED_OUT"))
+  action: ALLOW
+}
+
+rule EnterpriseCanReadAccountBalanceAsset {
+ 	description: "Allow Enterprises can read their account balances"
+  participant(p): "org.tripcontract.network.Enterprise"
+  operation: READ
+  resource(o): "org.tripcontract.network.Account"
+  condition: (o.getIdentifier() == p.account.getIdentifier())
+  action: ALLOW
+}
+
+rule OwnerCanReadAccountBalanceAsset {
+ 	description: "Allow Owners can read their account balances"
+  participant(p): "org.tripcontract.network.Owner"
+  operation: READ
+  resource(o): "org.tripcontract.network.Account"
+  condition: (o.getIdentifier() == p.account.getIdentifier())
+  action: ALLOW
+}
+
+rule ParticipantsSeeSelves {
+  	description: "Let participants see themselves"
+  	participant(p): "org.hyperledger.composer.system.Participant"
+  	operation: ALL
+    resource(o): "org.hyperledger.composer.system.Participant"
+  	condition: (o.getIdentifier() == p.getIdentifier())
+  	action: ALLOW
+}
+
+rule NetworkAdminUser {
+    description: "Grant business network administrators full access to user resources"
+    participant: "org.hyperledger.composer.system.NetworkAdmin"
+    operation: ALL
+    resource: "**"
+    action: ALLOW
+}
+
+rule SystemCreateAsset {
+    description: "Grant all full access to system resources"
+    participant: "org.hyperledger.composer.system.Participant"
+    operation: CREATE
+    resource: "org.hyperledger.composer.system.AddAsset"
+    action: ALLOW
+}
+
+rule SystemCreateHistorianRecord {
+    description: "Grant all full access to system resources"
+    participant: "org.hyperledger.composer.system.Participant"
+    operation: CREATE
+    resource: "org.hyperledger.composer.system.HistorianRecord"
+    action: ALLOW
+}
+
+rule SystemHistorianRecord {
+    description: "Grant all full access to system resources"
+    participant: "org.hyperledger.composer.system.Participant"
+    operation: READ
+    resource: "org.hyperledger.composer.system.HistorianRecord"
+    action: ALLOW
+}
+
+rule SystemReadNetwork {
+    description: "Grant all full access to system resources"
+    participant: "org.hyperledger.composer.system.Participant"
+    operation: READ
+    resource: "org.hyperledger.composer.system.Network"
+    action: ALLOW
+}
+
+rule SystemReadAssetRegistry {
+    description: "Grant all full access to system resources"
+    participant: "org.hyperledger.composer.system.Participant"
+    operation: READ
+    resource: "org.hyperledger.composer.system.AssetRegistry"
+    action: ALLOW
+}
+
+rule SystemReadTransactionRegistry {
+    description: "Grant all full access to system resources"
+    participant: "org.hyperledger.composer.system.Participant"
+    operation: READ
+    resource: "org.hyperledger.composer.system.TransactionRegistry"
+    action: ALLOW
+}
+
+rule SystemReadParticipantRegistry {
+    description: "Grant all full access to system resources"
+    participant: "org.hyperledger.composer.system.Participant"
+    operation: READ
+    resource: "org.hyperledger.composer.system.ParticipantRegistry"
+    action: ALLOW
+}

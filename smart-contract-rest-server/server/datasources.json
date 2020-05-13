@@ -1,0 +1,8 @@
+{
+    "db": {
+        "name": "mongodb",
+        "database": "composer",
+        "connector": "mongodb",
+        "host": "localhost"
+    }
+}

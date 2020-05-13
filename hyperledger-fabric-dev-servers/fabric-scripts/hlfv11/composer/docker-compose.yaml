@@ -1,0 +1,71 @@
+version: '2'
+
+services:
+  ca.trade.tripcontract.com:
+    image: hyperledger/fabric-ca:$ARCH-1.1.0
+    environment:
+      - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+      - FABRIC_CA_SERVER_CA_NAME=ca.trade.tripcontract.com
+
+    ports:
+      - "7054:7054"
+    command: sh -c 'fabric-ca-server start --ca.certfile /etc/hyperledger/fabric-ca-server-config/ca.trade.tripcontract.com-cert.pem --ca.keyfile /etc/hyperledger/fabric-ca-server-config/cb67ddad03890081af9211507dc3ad1779523fb81acf8b6b5cf054eb9bb91c8d_sk -b admin:adminpw -d'
+    volumes:
+      - ./crypto-config/peerOrganizations/trade.tripcontract.com/ca/:/etc/hyperledger/fabric-ca-server-config
+    container_name: ca.trade.tripcontract.com
+
+  orderer.tripcontract.com:
+    container_name: orderer.tripcontract.com
+    image: hyperledger/fabric-orderer:$ARCH-1.1.0
+    environment:
+      - ORDERER_GENERAL_LOGLEVEL=debug
+      - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
+      - ORDERER_GENERAL_GENESISMETHOD=file
+      - ORDERER_GENERAL_GENESISFILE=/etc/hyperledger/configtx/composer-genesis.block
+      - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
+      - ORDERER_GENERAL_LOCALMSPDIR=/etc/hyperledger/msp/orderer/msp
+    working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+    command: orderer
+    ports:
+      - 7050:7050
+    volumes:
+        - ./:/etc/hyperledger/configtx
+        - ./crypto-config/ordererOrganizations/tripcontract.com/orderers/orderer.tripcontract.com/msp:/etc/hyperledger/msp/orderer/msp
+
+  peer0.trade.tripcontract.com:
+    container_name: peer0.trade.tripcontract.com
+    image: hyperledger/fabric-peer:$ARCH-1.1.0
+    environment:
+      - CORE_LOGGING_LEVEL=debug
+      - CORE_CHAINCODE_LOGGING_LEVEL=DEBUG
+      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+      - CORE_PEER_ID=peer0.trade.tripcontract.com
+      - CORE_PEER_ADDRESS=peer0.trade.tripcontract.com:7051
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=composer_default
+      - CORE_PEER_LOCALMSPID=TripContractMSP
+      - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/peer/msp
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb:5984
+    working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+    command: peer node start
+    ports:
+      - 7051:7051
+      - 7053:7053
+    volumes:
+        - /var/run/:/host/var/run/
+        - ./:/etc/hyperledger/configtx
+        - ./crypto-config/peerOrganizations/trade.tripcontract.com/peers/peer0.trade.tripcontract.com/msp:/etc/hyperledger/peer/msp
+        - ./crypto-config/peerOrganizations/trade.tripcontract.com/users:/etc/hyperledger/msp/users
+    depends_on:
+      - orderer.tripcontract.com
+      - couchdb
+
+  couchdb:
+    container_name: couchdb
+    image: hyperledger/fabric-couchdb:$ARCH-0.4.6
+    ports:
+      - 5984:5984
+    environment:
+      DB_URL: http://localhost:5984/member_db
+
+

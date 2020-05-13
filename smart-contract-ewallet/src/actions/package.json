@@ -1,0 +1,6 @@
+{
+  "name": "actions",
+  "private": true,
+  "license": "MIT",
+  "main": "index.js"
+}

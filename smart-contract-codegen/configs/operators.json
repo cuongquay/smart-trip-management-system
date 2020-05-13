@@ -1,0 +1,28 @@
+{
+    "defaults": {
+        "serverPort": "3000",
+        "serviceFolder": "services",
+        "extraDependancies": [
+        ],
+        "dockerPackages": "openssl"
+    },
+    "directories": [
+        "tests/services", "specs", "utils", "controllers", "services"
+    ],
+    "transformations": [
+        { "input": "app.mustache", "output": "app.js" },
+        { "input": "package.mustache", "output": "package.json" },
+        { "input": "README.mustache", "output": "README.md" },
+        { "input": "swagger.mustache", "output": "specs/swagger.yaml" },
+        { "input": "writer.mustache", "output": "utils/writer.js" },
+        { "input": "Dockerfile.mustache", "output": "Dockerfile" },
+        { "input": "docker-compose.mustache", "output": "docker-compose.yml" },
+        { "input": ".gitignore.mustache", "output": ".gitignore" },
+        { "input": "setup.env.mustache", "output": "tests/setup.env.example" }
+    ],
+    "perApi": [
+        { "input": "controller.mustache", "output": "controllers/{{name}}.js" },
+        { "input": "service.mustache", "output": "services/{{name}}.js" },
+        { "input": "sample.spec.mustache", "output": "tests/services/{{name}}.spec.js" }
+    ]
+}

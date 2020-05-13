@@ -1,0 +1,6 @@
+{
+  "name": "checkin",
+  "private": true,
+  "license": "MIT",
+  "main": "index.js"
+}

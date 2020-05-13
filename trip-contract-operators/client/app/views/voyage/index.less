@@ -1,0 +1,96 @@
+@import (less) "../../../assets/stylesheets/colors.less";
+
+.bc-man-dashboard {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 42px 52px;
+  h1 {
+    margin: 0 0 60px 0;
+    display: flex;
+    justify-content: space-between;
+  }
+  h5 {
+    margin: 48px 0 30px 0;
+  }
+  .card {
+    .card-block {
+      .status-locked {
+        color:#5d6173;
+      }
+      .status-normal {
+        color:#5c6072;
+      }
+    }
+  }
+  .btn:disabled {
+    background: #343640!important;
+  }
+}
+
+.bc-man-overview {
+  .block-main {
+    padding: 40px 40px 0;height: 295px;width: 650px;
+    background-image: url('/tripcontract/assets/images/block-main.svg');
+    background-repeat: no-repeat;
+
+    .block-field {
+      cursor: pointer;
+      &:hover {
+        color: whitesmoke;
+      }
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .selected {
+      color: #ffd640;
+    }
+  }
+  .block-info {
+    padding: 40px 60px 0;height: 110px;width: 222px;
+    background-image: url('/tripcontract/assets/images/block-info.svg');
+    background-repeat: no-repeat;
+  }
+  .block-none {
+    padding: 40px 40px 0;height: 295px;width: 460px;
+  }
+  .time-table {
+    padding: 0px 30px 10px;
+    .timetable {
+      padding: 0px 0px 10px;
+      .time-field {
+        padding: 5px 20px;
+        margin: 5px 2px; 
+      }
+      .selected {
+        background-color: #ffd640;
+        color: #454856;
+      }
+    }
+    .datetable {
+      padding: 0px 0px 10px;
+      .date-field {
+        padding: 5px 20px;
+        margin: 5px 2px; 
+      }
+      .selected {
+        background-color: #ffd640;
+        color: #454856;
+      }
+    }
+  }
+  .route-info {
+    padding: 20px 30px 10px;
+  }
+}
+
+@media screen and (max-width: 810px) {
+  .bc-man-overview {
+    .left {
+      width: 100%!important;
+    }
+    .right {
+      display: none;
+    }
+  }
+}

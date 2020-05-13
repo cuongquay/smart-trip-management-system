@@ -1,0 +1,47 @@
+{
+  "$class": "org.tripcontract.network.UpdateVoyageInfo",
+  "routeName": "Nam Dinh - Ha Noi",
+  "stationStops": [ {
+    "stationAddress": "1A Tran Hung Dao, Nam Dinh",
+    "stationName": "Nam Dinh",
+    "stationCode": "1234",
+    "depatureTime": "2018-03-31T12:00:00",
+    "arrivalTime": "2018-03-31T11:45:00",
+    "stopStatus": "PASSED"
+  }, {
+    "stationAddress": "13 Hoang Dieu, Phu Ly",
+    "stationName": "Phu Ly",
+    "stationCode": "1224",
+    "depatureTime": "2018-03-31T13:00:00",
+    "arrivalTime": "2018-03-31T12:45:00",
+    "stopStatus": "ARRIVING"
+  }, {
+    "stationAddress": "15 Giai Phong, Hanoi",
+    "stationName": "Ha Noi",
+    "stationCode": "0001",
+    "depatureTime": "2018-03-31T15:00:00",
+    "arrivalTime": "2018-03-31T14:45:00",
+    "stopStatus": "ONTIME"
+  } ],
+  "voyage": "resource:org.tripcontract.network.Voyage#9756"
+}
+
+{
+  "$class": "org.tripcontract.network.PlaceOrder",
+  "customer": "resource:org.tripcontract.network.Customer#0580",
+  "voyages": [ "resource:org.tripcontract.network.Voyage#8624" ],
+  "orderId": "1111",
+  "orderRoute": {
+    "$class": "org.tripcontract.network.OrderRoute",
+    "pickupAddress": "",
+    "dropOffAddress": "",
+    "depatureTime": "2018-03-31T06:49:46.827Z"
+  },
+  "orderOptions": {
+    "$class": "org.tripcontract.network.OrderOptions",
+    "handbag": false,
+    "baggage": false,
+    "children": false,
+    "extras": []
+  }
+}

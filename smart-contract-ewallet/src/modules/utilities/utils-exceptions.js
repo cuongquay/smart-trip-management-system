@@ -1,0 +1,247 @@
+import { I18n } from 'common';
+
+export const getExceptionMessage = (code: string, message: string = '') => {
+  switch (code) {
+    case 'IncorrectFormatPhoneNumberException':
+      return I18n.t('errors.IncorrectFormatPhoneNumberException');
+    case 'LoginVerifyIncorrectCodeException':
+      return {
+        title: I18n.t('errors.LoginVerifyIncorrectCodeException.title', {
+          retryLeft: 3 - message.match(/\d+/g).map(Number)
+        }),
+        message: I18n.t('errors.LoginVerifyIncorrectCodeException.message')
+      };
+    case 'LoginVerifyIncorrectCodeExceptionPasscode':
+      return {
+        title: I18n.t(
+          'errors.LoginVerifyIncorrectCodeExceptionPasscode.title',
+          {
+            retryLeft: message.match(/\d+/g).map(Number)
+          }
+        ),
+        message: I18n.t(
+          'errors.LoginVerifyIncorrectCodeExceptionPasscode.message'
+        )
+      };
+
+    case 'LoginVerifyIncorrectCodeExceptionOTP':
+      return {
+        title: I18n.t('errors.LoginVerifyIncorrectCodeExceptionOTP.title', {
+          retryLeft: message.match(/\d+/g).map(Number)
+        }),
+        message: I18n.t('errors.LoginVerifyIncorrectCodeExceptionOTP.message')
+      };
+    case 'CurrentPasscodeInvalidException':
+      return I18n.t(`errors.${code}`);
+    case 'NewPasscodeSameOldPasswordException':
+      return I18n.t(`errors.${code}`);
+    case 'PasscodeResetAddressNotFoundException':
+      return I18n.t(`errors.${code}`);
+    case 'PasscodeResetRequestNotFoundException':
+      return I18n.t(`errors.${code}`);
+    case 'VerifyExpiredException':
+      return I18n.t(`errors.${code}`);
+    case 'NotActiveException':
+      return I18n.t(`errors.${code}`);
+    case 'LoginRequestFailedException':
+      return I18n.t(`errors.${code}`);
+    case 'LoginVerifyExpiredException':
+      return I18n.t(`errors.${code}`);
+    case 'PasscodeExistedException':
+      return I18n.t(`errors.${code}`);
+    case 'PasscodeDuplicatedException':
+      return I18n.t(`errors.${code}`);
+    case 'PasscodeResetNotVerifiedException':
+      return I18n.t(`errors.${code}`);
+    case 'NotValidPhoneNumberException':
+      return I18n.t(`errors.${code}`);
+    case 'TokenNotProvidedException':
+      return I18n.t(`errors.${code}`);
+    case 'InvalidResetAddress':
+      return I18n.t('errors.InvalidResetAddress');
+    case 'AmountNotSelected':
+      return I18n.t('errors.AmountNotSelected');
+    case 'PaymentMethodNotSelected':
+      return I18n.t('errors.PaymentMethodNotSelected');
+    case 'MerchantNotActiveException':
+      return I18n.t('errors.MerchantNotActiveException');
+    case 'NotFoundHttpException':
+      return I18n.t(`errors.${code}`);
+    case 'RedeemNeedPurchaseFirstException':
+      return I18n.t(`errors.${code}`);
+    case 'UnexpectedError':
+      return I18n.t('errors.UnexpectedError');
+    case 'PhoneNotEntered':
+      return I18n.t('errors.PhoneNotEntered');
+    case 'PhoneInvalid':
+      return I18n.t('errors.PhoneInvalid');
+    case 'PromotionInvalid':
+      return I18n.t('errors.PromotionInvalid');
+    case 'MerchantNotFound':
+      return I18n.t('errors.${code}');
+    case 'InvalidPromotionException':
+      return I18n.t('errors.InvalidPromotionException');
+    case 'TokenExpiredException':
+      return I18n.t('errors.TokenExpiredException');
+    case 'MerchantNotFoundException':
+      return I18n.t(`errors.${code}`);
+    case 'MerchantCodeNotFoundException':
+      return I18n.t(`errors.${code}`);
+    case 'RedeemTooFastAndFuriousException':
+      return I18n.t(`errors.${code}`);
+    case 'PromotionNotFoundException':
+      return I18n.t(`errors.${code}`);
+    case 'InitTransactionFailedException':
+      return I18n.t('errors.InitTransactionFailedException');
+    case 'PromotionCodeNotFound':
+      return I18n.t('errors.PromotionCodeNotFound');
+    case 'AmountInvalidException':
+      return I18n.t('errors.AmountInvalidException');
+    case 'ProviderInvalidException':
+      return I18n.t('errors.ProviderInvalidException');
+    case 'QuantityInvalidException':
+      return I18n.t('errors.QuantityInvalidException');
+    case 'ServiceMaintenance':
+      return I18n.t('errors.ServiceMaintenance');
+    case 'TypeInvalidException':
+      return I18n.t('errors.TypeInvalidException');
+    case 'PhoneNumberInvalidException':
+      return I18n.t('errors.PhoneNumberInvalidException');
+    case 'OutsBalanceNotEnoughException':
+      return I18n.t('errors.OutsBalanceNotEnoughException');
+    case 'InvalidProfileNameException':
+      return I18n.t('errors.InvalidProfileNameException');
+    case 'UpdateProfileFailException':
+      return I18n.t('errors.UpdateProfileFailException');
+    case 'InvalidInfo':
+      return I18n.t('errors.InvalidInfo');
+    case 'EmptyProfileNameException':
+      return I18n.t('errors.EmptyProfileNameException');
+    case 'ErrorAgeException':
+      return I18n.t('errors.ErrorAgeException');
+    case 'MinimumProfileNameException':
+      return I18n.t('errors.MinimumProfileNameException');
+    case 'NumberOnlyNotSupported':
+      return I18n.t('errors.NumberOnlyNotSupported');
+    case 'MinimumIdentityCardException':
+      return I18n.t('errors.MinimumIdentityCardException');
+    case 'EmptyIdentityCardException':
+      return I18n.t('errors.EmptyIdentityCardException');
+    case 'SpecialCharactersNotSupported':
+      return I18n.t('errors.SpecialCharactersNotSupported');
+    case 'WordNotSupported':
+      return I18n.t('errors.WordNotSupported');
+    case 'PromotionAccumulatedCouponException':
+      return I18n.t('errors.PromotionAccumulatedCouponException');
+    case 'ValidationException':
+      return I18n.t('errors.ValidationException');
+    case 'PromotionAccumulatedGoodsException':
+      return I18n.t('errors.PromotionAccumulatedGoodsException');
+    case 'PromotionCouponValueException':
+      return I18n.t('errors.PromotionCouponValueException');
+    case 'PromotionDateException':
+      return I18n.t('errors.PromotionDateException');
+    case 'PromotionFirstCouponException':
+      return I18n.t('errors.PromotionFirstCouponException');
+    case 'PromotionFirstPurchaseException':
+      return I18n.t('errors.PromotionFirstPurchaseException');
+    case 'PromotionFirstTransactionException':
+      return I18n.t('errors.PromotionFirstTransactionException');
+    case 'PromotionGoodsValueException':
+      return I18n.t('errors.PromotionGoodsValueException');
+    case 'PromotionQtyAccumulatedCouponException':
+      return I18n.t('errors.PromotionQtyAccumulatedCouponException');
+    case 'PromotionQtyAccumulatedGoodsException':
+      return I18n.t('errors.PromotionQtyAccumulatedGoodsException');
+    case 'PromotionQtyMerchantBuyCouponException':
+      return I18n.t('errors.PromotionQtyMerchantBuyCouponException');
+    case 'PromotionQtyMerchantBuyGoodsException':
+      return I18n.t('errors.PromotionQtyMerchantBuyGoodsException');
+    case 'PromotionQtyReferralException':
+      return I18n.t('errors.PromotionQtyReferralException');
+    case 'PromotionRestrictAreaException':
+      return I18n.t('errors.PromotionRestrictAreaException');
+    case 'PromotionRestrictBusinessTypeException':
+      return I18n.t('errors.PromotionRestrictBusinessTypeException');
+    case 'PromotionRestrictCustomerException':
+      return I18n.t('errors.PromotionRestrictCustomerException');
+    case 'PromotionRestrictMerchantException':
+      return I18n.t('errors.PromotionRestrictMerchantException');
+    case 'PromotionRestrictRewardDailyException':
+      return I18n.t('errors.PromotionRestrictRewardDailyException');
+    case 'PromotionTransactionSubtypeException':
+      return I18n.t('errors.PromotionTransactionSubtypeException');
+    case 'PromotionTransactionTypeException':
+      return I18n.t('errors.PromotionTransactionTypeException');
+    case 'PromotionUseException':
+      return I18n.t('errors.PromotionUseException');
+    case 'EmptyResetEmail':
+      return I18n.t('errors.EmptyResetEmail');
+    case 'EmptyResetPhone':
+      return I18n.t('errors.EmptyResetPhone');
+    case 'InvalidResetEmail':
+      return I18n.t('errors.InvalidResetEmail');
+    case 'InvalidResetPhone':
+      return I18n.t('errors.InvalidResetPhone');
+    case 'RequireSoftwareUpdateException':
+      return I18n.t('errors.RequireSoftwareUpdateException');
+    case 'PaymentStateNotFoundException':
+      return I18n.t('errors.PaymentStateNotFoundException');
+    case 'PaymentProcessDeniedException':
+      return I18n.t('errors.PaymentProcessDeniedException');
+    case 'OrderCreateFailedException':
+      return I18n.t('errors.OrderCreateFailedException');
+    case 'AmountTooLowException':
+      return I18n.t('errors.AmountTooLowException');
+    case 'InputCodesDoNotMatch':
+      return I18n.t(`errors.${code}`);
+    case 'CouldNotTransferToYourselfException':
+      return I18n.t('errors.CouldNotTransferToYourselfException');
+    case 'CustomerNotFoundException':
+      return I18n.t('errors.CustomerNotFoundException');
+    case 'CustomerNotActiveException':
+      return I18n.t('errors.CustomerNotActiveException');
+    case 'ProcessFailedException':
+      return I18n.t('errors.ProcessFailedException');
+    case 'AccountNotActivatedException':
+      return I18n.t('errors.AccountNotActivatedException');
+    case 'InvalidParamUserSettingException':
+      return I18n.t('errors.InvalidParamUserSettingException');
+    case 'MultipleLoginException':
+      return I18n.t(`errors.${code}`);
+    case 'InvalidOrderBilledAmountException':
+      return I18n.t('errors.InvalidOrderBilledAmountException');
+    case 'TransferPhoneEmptyException':
+      return I18n.t('errors.TransferPhoneEmptyException');
+    case 'PaymentProcessFailedException':
+      return I18n.t('errors.PaymentProcessFailedException');
+    case 'NoInternetConnection':
+      return I18n.t('errors.NoInternetConnection');
+    case 'QrCodeNotFoundException':
+      return I18n.t('errors.QrCodeNotFoundException');
+    case 'GetAccountsFailException':
+      return I18n.t('errors.GetAccountsFailException');
+    case 'OrderNotFoundException':
+      return I18n.t('errors.OrderNotFoundException');
+    case 'InvalidOrderCancelStatusException':
+      return I18n.t('errors.InvalidOrderCancelStatusException');
+    case 'OrderUpdateFailedException':
+      return I18n.t('errors.OrderUpdateFailedException');
+    case 'PayloadInvalidException':
+      return I18n.t('errors.PayloadInvalidException');
+    case 'PaymentAccountInvalidException':
+      return I18n.t('errors.PaymentAccountInvalidException');
+    case 'InvalidOrderSetbackStatusException':
+      return I18n.t('errors.InvalidOrderSetbackStatusException');
+    case 'InvalidSetbackStateException':
+      return I18n.t('errors.InvalidSetbackStateException');
+    case 'UserProfileNotFoundException':
+      return I18n.t('errors.UserProfileNotFoundException');
+    case 'ActivityInvalidException':
+      return I18n.t('errors.ActivityInvalidException');
+    case 'SystemUnexpectedException':
+      return I18n.t('errors.SystemUnexpectedException');
+    default:
+      return { title: '', message: '' };
+  }
+};

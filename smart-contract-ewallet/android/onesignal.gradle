@@ -1,0 +1,3 @@
+ext {
+    onesignal_app_id = 'c5c43d0f-b678-451f-8063-30516852bb72'
+}

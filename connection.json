@@ -1,0 +1,57 @@
+{
+    "name": "tripcontract",
+    "x-type": "hlfv1",
+    "x-commitTimeout": 300,
+    "version": "1.0.0",
+    "client": {
+        "organization": "TripContract",
+        "connection": {
+            "timeout": {
+                "peer": {
+                    "endorser": "300",
+                    "eventHub": "300",
+                    "eventReg": "300"
+                },
+                "orderer": "300"
+            }
+        }
+    },
+    "channels": {
+        "tripcontractchannel": {
+            "orderers": [
+                "orderer.tripcontract.com"
+            ],
+            "peers": {
+                "peer0.trade.tripcontract.com": {}
+            }
+        }
+    },
+    "organizations": {
+        "TripContract": {
+            "mspid": "TripContractMSP",
+            "peers": [
+                "peer0.trade.tripcontract.com"
+            ],
+            "certificateAuthorities": [
+                "ca.trade.tripcontract.com"
+            ]
+        }
+    },
+    "orderers": {
+        "orderer.tripcontract.com": {
+            "url": "grpc://orderer.tripcontract.com:7050"
+        }
+    },
+    "peers": {
+        "peer0.trade.tripcontract.com": {
+            "url": "grpc://peer0.trade.tripcontract.com:7051",
+            "eventUrl": "grpc://peer0.trade.tripcontract.com:7053"
+        }
+    },
+    "certificateAuthorities": {
+        "ca.trade.tripcontract.com": {
+            "url": "http://ca.trade.tripcontract.com:7054",
+            "caName": "ca.trade.tripcontract.com"
+        }
+    }
+}
