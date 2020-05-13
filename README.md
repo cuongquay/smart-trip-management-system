@@ -1,4 +1,4 @@
-# Smart Trip Management System
+# Smar©Trip Management System
 
 ![demo](https://github.com/cuongquay/smartrip-management-system/blob/master/trip-operator.png "TripContract Operator")
 
