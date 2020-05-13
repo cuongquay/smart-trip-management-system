@@ -1,6 +1,6 @@
 # Smart Trip Management System
 
-![demo](https://https://github.com/cuongquay/smartrip-management-system/blob/master/trip-operator.png "TripContract Operator")
+![demo](https://github.com/cuongquay/smartrip-management-system/blob/master/trip-operator.png "TripContract Operator")
 
 # Vehicle Manufacture Network
 
