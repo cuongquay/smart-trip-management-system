@@ -16,14 +16,14 @@
   "license": "Unlicense",
   "private": true,
   "dependencies": {
-    "body-parser": "^1.18.3",
+    "body-parser": "^1.20.1",
     "cfenv": "^1.1.0",
     "config": "^1.26.1",
-    "express": "^4.16.3",
+    "express": "^4.18.2",
     "express-less": "^0.1.0",
     "request": "^2.87.0",
     "js-yaml": "^3.3.0",
-    "swagger-tools": "0.10.1",
+    "swagger-tools": "0.10.4",
     "ws": "^5.2.1"
   },
   "devDependencies": {
