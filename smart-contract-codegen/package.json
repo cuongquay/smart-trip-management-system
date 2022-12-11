@@ -20,7 +20,7 @@
     "reftools": "0.0.20",
     "rimraf": "^2.6.2",
     "safe-json-stringify": "github:MikeRalphson/safe-json-stringify",
-    "swagger-tools": "^0.10.3",
+    "swagger-tools": "^0.10.4",
     "swagger2openapi": "^2.11.9",
     "uuid": "^3.1.0",
     "yargs": "^11.0.0"
