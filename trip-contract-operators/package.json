@@ -23,7 +23,7 @@
     "express-less": "^0.1.0",
     "request": "^2.87.0",
     "js-yaml": "^3.3.0",
-    "swagger-tools": "0.10.1",
+    "swagger-tools": "0.10.4",
     "ws": "^5.2.1"
   },
   "devDependencies": {
